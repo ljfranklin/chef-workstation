@@ -1,0 +1,9 @@
+DEPENDENCIES
+  apt (~> 2.7.0)
+  firewall (~> 1.2.0)
+
+GRAPH
+  apt (2.7.0)
+  firewall (1.2.0)
+    poise (~> 2.0)
+  poise (2.0.1)

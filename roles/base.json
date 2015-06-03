@@ -1,0 +1,17 @@
+{
+  "description": "Used to setup my personal workstations",
+  "run_list": [
+    "recipe[apt]",
+    "recipe[git]",
+    "recipe[chrome]",
+    "recipe[firefox]",
+    "recipe[ssh-server]"
+  ],
+  "default_attributes": {
+    "my_user": "lyle",
+    "git": {
+      "name": "Lyle Franklin",
+      "email": "lylejfranklin@gmail.com"
+    }
+  }
+}
