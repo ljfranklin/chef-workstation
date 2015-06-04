@@ -2,11 +2,13 @@
   "description": "Used to setup my personal workstations",
   "run_list": [
     "recipe[apt]",
+    "recipe[terminal-utilities]",
     "recipe[git]",
     "recipe[chrome]",
     "recipe[firefox]",
     "recipe[spotify]",
-    "recipe[ssh-server]"
+    "recipe[ssh-server]",
+    "recipe[docker]"
   ],
   "default_attributes": {
     "my_user": "lyle",
