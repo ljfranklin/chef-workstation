@@ -5,6 +5,7 @@
     "recipe[git]",
     "recipe[chrome]",
     "recipe[firefox]",
+    "recipe[spotify]",
     "recipe[ssh-server]"
   ],
   "default_attributes": {
