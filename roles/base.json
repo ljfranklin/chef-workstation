@@ -8,7 +8,8 @@
     "recipe[firefox]",
     "recipe[spotify]",
     "recipe[ssh-server]",
-    "recipe[docker]"
+    "recipe[docker]",
+    "recipe[graphics-driver]"
   ],
   "default_attributes": {
     "my_user": "lyle",
