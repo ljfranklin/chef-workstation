@@ -9,7 +9,8 @@
     "recipe[spotify]",
     "recipe[ssh-server]",
     "recipe[docker]",
-    "recipe[graphics-driver]"
+    "recipe[graphics-driver]",
+    "recipe[steam]"
   ],
   "default_attributes": {
     "my_user": "lyle",

@@ -1,4 +1,4 @@
-apt_repository "google-chrome" do
+apt_repository "spotify" do
   uri "http://repository.spotify.com"
   components ["stable", "non-free"]
   keyserver 'hkp://keyserver.ubuntu.com:80'
