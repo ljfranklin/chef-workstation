@@ -11,7 +11,8 @@
     "recipe[docker]",
     "recipe[graphics-driver]",
     "recipe[steam]",
-    "recipe[dropbox]"
+    "recipe[dropbox]",
+    "recipe[skype]"
   ],
   "default_attributes": {
     "my_user": "lyle",
