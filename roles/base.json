@@ -10,7 +10,8 @@
     "recipe[ssh-server]",
     "recipe[docker]",
     "recipe[graphics-driver]",
-    "recipe[steam]"
+    "recipe[steam]",
+    "recipe[dropbox]"
   ],
   "default_attributes": {
     "my_user": "lyle",
