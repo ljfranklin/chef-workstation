@@ -1,9 +1,9 @@
-
-remote_file "/tmp/install_docker" do
-  source "https://get.docker.com/"
-  mode 0755
+apt_repository "docker" do
+  uri "https://get.docker.com/ubuntu"
+  components ["docker", "main"]
+  keyserver "hkp://p80.pool.sks-keyservers.net:80"
+  key "36A1D7869245C8950F966E92D8576A8BA88D21E9"
+  action :add
 end
 
-execute "install docker" do
-  command "sh /tmp/install_docker"
-end
+package "lxc-docker"
