@@ -9,7 +9,6 @@
     "recipe[spotify]",
     "recipe[ssh-server]",
     "recipe[docker]",
-    "recipe[graphics-driver]",
     "recipe[steam]",
     "recipe[dropbox]",
     "recipe[skype]",
