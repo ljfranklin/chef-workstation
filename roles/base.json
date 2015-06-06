@@ -12,7 +12,8 @@
     "recipe[graphics-driver]",
     "recipe[steam]",
     "recipe[dropbox]",
-    "recipe[skype]"
+    "recipe[skype]",
+    "recipe[vagrant]"
   ],
   "default_attributes": {
     "my_user": "lyle",
