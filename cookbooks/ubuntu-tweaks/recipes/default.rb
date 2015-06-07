@@ -4,27 +4,30 @@ execute "restart-unity" do
   action :nothing
 end
 
-schema = "org.compiz.core:/org/compiz/profiles/unity/plugins/core/"
-execute "enable workspaces" do
-  key = 'hsize'
-  value = '4'
-  user node['my_user']
+plugins = {
+  "org.compiz.core:/org/compiz/profiles/unity/plugins/core/" => {
+    "hsize" => "4"
+  },
+  "org.compiz.grid:/org/compiz/profiles/unity/plugins/grid/" => {
+    "top-edge-action" => "10",
+    "top-right-corner-action" => "9",
+    "top-left-corner-action" => "7",
+    "right-edge-action" => "6",
+    "left-edge-action" => "4",
+    "bottom-right-corner-action" => "3",
+    "bottom-left-corner-action" => "1"
+  }
+}
 
-  command <<-EOH
-  gsettings set \
-  #{schema} \
-  #{key} #{value}
-  EOH
+plugins.each_pair do |plugin, keys|
+  keys.each_pair do |key, value|
+    execute "enable-workspaces" do
+      user node['my_user']
 
-  val_unchanged = <<-EOH
-  VALUE=$(gsettings get #{schema} #{key})
-  if [ "${VALUE}" -eq "#{value}" ]; then
-    exit 0
-  fi
-  exit 1
-  EOH
+      command GsettingsHelper.set_gsetting(plugin, key, value)
+      not_if GsettingsHelper.gsetting_unchanged?(plugin, key, value), :user => node['my_user']
 
-  not_if val_unchanged, :user => node['my_user']
-
-  notifies :run, 'execute[restart-unity]', :delayed
+      notifies :run, 'execute[restart-unity]', :delayed
+    end
+  end
 end
