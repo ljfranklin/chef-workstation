@@ -12,7 +12,8 @@
     "recipe[steam]",
     "recipe[dropbox]",
     "recipe[skype]",
-    "recipe[vagrant]"
+    "recipe[vagrant]",
+    "recipe[ubuntu-tweaks]"
   ],
   "default_attributes": {
     "my_user": "lyle",
