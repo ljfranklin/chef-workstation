@@ -10,7 +10,7 @@ module GsettingsHelper
   def self.gsetting_unchanged?(plugin, key, value)
     <<-EOH
     VALUE=$(gsettings get #{plugin} #{key})
-    if [ "${VALUE}" -eq "#{value}" ]; then
+    if [ "${VALUE}" = "#{value}" ]; then
       exit 0
     fi
     exit 1
