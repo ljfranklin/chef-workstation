@@ -8,6 +8,10 @@ plugins = {
   "org.compiz.core:/org/compiz/profiles/unity/plugins/core/" => {
     "hsize" => "4"
   },
+  "org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/" => {
+    "disable-show-desktop" => "true",
+    "disable-mouse" => "true"
+  },
   "org.compiz.grid:/org/compiz/profiles/unity/plugins/grid/" => {
     "top-edge-action" => "10",
     "top-right-corner-action" => "9",

@@ -1,4 +1,5 @@
 {
+  "name": "jules",
   "run_list": [
     "role[base]",
     "recipe[nvidia-proprietary-driver]"
