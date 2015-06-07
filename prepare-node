@@ -12,6 +12,12 @@ if [ "$#" -ne 1 ]; then
 fi
 NODE_NAME=${1}
 
+CHEF_OPTS=${CHEF_OPTS:-}
+CHEF_DEBUG=${CHEF_DEBUG:-}
+if [ "${CHEF_DEBUG}" == true ]; then
+  CHEF_OPTS="${CHEF_OPTS} -l debug"
+fi
+
 MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 pushd ${MY_DIR}
@@ -26,7 +32,8 @@ pushd ${MY_DIR}
   sudo chef-client \
     --local-mode \
     -c config/solo.rb \
-    -j nodes/${NODE_NAME}.json
+    -j nodes/${NODE_NAME}.json \
+    ${CHEF_OPTS}
 popd
 
 echo -e "${GREEN}Successfully prepared workstation${NC}"
