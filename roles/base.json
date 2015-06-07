@@ -13,7 +13,8 @@
     "recipe[dropbox]",
     "recipe[skype]",
     "recipe[vagrant]",
-    "recipe[ubuntu-tweaks]"
+    "recipe[ubuntu-tweaks]",
+    "recipe[shell-tweaks]"
   ],
   "default_attributes": {
     "my_user": "lyle",
