@@ -14,13 +14,19 @@
     "recipe[skype]",
     "recipe[vagrant]",
     "recipe[ubuntu-tweaks]",
-    "recipe[shell-tweaks]"
+    "recipe[shell-tweaks]",
+    "recipe[bash-it]"
   ],
   "default_attributes": {
     "my_user": "lyle",
     "git": {
       "name": "Lyle Franklin",
       "email": "lylejfranklin@gmail.com"
+    },
+    "bash-it": {
+      "aliases": [
+        "general"
+      ]
     }
   }
 }
