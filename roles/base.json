@@ -24,6 +24,7 @@
       "email": "lylejfranklin@gmail.com"
     },
     "bash-it": {
+      "theme": "luan",
       "aliases": [
         "general",
         "clipboard",
