@@ -33,6 +33,9 @@
         "aliases": [
           "gst",
           "mkcd"
+        ],
+        "plugins": [
+          "history-arrow-keys"
         ]
       }
     }
