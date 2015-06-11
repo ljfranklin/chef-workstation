@@ -15,7 +15,8 @@
     "recipe[vagrant]",
     "recipe[ubuntu-tweaks]",
     "recipe[shell-tweaks]",
-    "recipe[bash-it]"
+    "recipe[bash-it]",
+    "recipe[terminator]"
   ],
   "default_attributes": {
     "my_user": "lyle",
