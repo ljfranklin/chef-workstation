@@ -25,7 +25,9 @@
     },
     "bash-it": {
       "aliases": [
-        "general"
+        "general",
+        "clipboard",
+        "vim"
       ]
     }
   }
