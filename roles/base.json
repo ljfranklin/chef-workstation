@@ -28,7 +28,13 @@
         "general",
         "clipboard",
         "vim"
-      ]
+      ],
+      "custom": {
+        "aliases": [
+          "gst",
+          "mkcd"
+        ]
+      }
     }
   }
 }
