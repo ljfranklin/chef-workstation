@@ -6,6 +6,7 @@
     "recipe[git]",
     "recipe[chrome]",
     "recipe[firefox]",
+    "recipe[vim]",
     "recipe[spotify]",
     "recipe[ssh-server]",
     "recipe[docker]",
