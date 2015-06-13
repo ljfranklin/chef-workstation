@@ -1,5 +1,7 @@
 apt_repository 'terminator' do
   uri 'ppa:gnome-terminator'
+  distribution 'saucy' # Latest distro included in PPA
+  components ['main']
 end
 
 package 'terminator'
