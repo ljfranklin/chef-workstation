@@ -41,6 +41,13 @@
           "history-arrow-keys"
         ]
       }
+    },
+    "vim": {
+       "plugins": {
+         "nerdtree": "https://github.com/scrooloose/nerdtree.git",
+         "sensible": "https://github.com/tpope/vim-sensible.git",
+         "solarized": "https://github.com/altercation/vim-colors-solarized.git"
+       }
     }
   }
 }

@@ -1,0 +1,23 @@
+execute pathogen#infect()
+
+" Set default options
+set nu
+set nowrap
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+" Set GUI options
+set guioptions-=m "remove menu bar
+set guioptions-=T "remove toolbar
+set guioptions-=r "remove right-hand scroll bar
+set guioptions-=L "remove left-hand scroll bar
+
+<% if node['vim']['plugins'].has_key?('nerdtree') %>
+nnoremap \ :NERDTreeToggle<CR>
+<% end %>
+
+<% if node['vim']['plugins'].has_key?('solarized') %>
+set background=dark
+colorscheme solarized
+<% end %>
