@@ -1,9 +1,3 @@
-execute "restart-unity" do
-  user node['my_user']
-  command "unity --replace &"
-  action :nothing
-end
-
 plugins = {
   "org.compiz.core:/org/compiz/profiles/unity/plugins/core/" => {
     "hsize" => "4"
@@ -20,6 +14,10 @@ plugins = {
     "left-edge-action" => "4",
     "bottom-right-corner-action" => "3",
     "bottom-left-corner-action" => "1"
+  },
+  "org.gnome.desktop.input-sources" => {
+    # Map caps lock to ESC for VIM
+    "xkb-options" => "\"['caps:escape']\""
   }
 }
 
@@ -30,8 +28,6 @@ plugins.each_pair do |plugin, keys|
 
       command GsettingsHelper.set_gsetting(plugin, key, value)
       not_if GsettingsHelper.gsetting_unchanged?(plugin, key, value), :user => node['my_user']
-
-      notifies :run, 'execute[restart-unity]', :delayed
     end
   end
 end
