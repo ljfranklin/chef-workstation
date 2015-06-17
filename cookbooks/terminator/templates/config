@@ -3,12 +3,12 @@
   title_transmit_bg_color = "#d30102"
   focus = system
 [keybindings]
-  reset_clear = <Ctrl>r
-  new_tab = <Ctrl>t
-  split_horiz = <Ctrl><Shift>d
-  split_vert = <Ctrl>d
-  close_term = <Ctrl>w
-  search = <Ctrl>f
+  reset_clear = <Alt>r
+  new_tab = <Alt>t
+  split_horiz = <Alt><Shift>d
+  split_vert = <Alt>d
+  close_term = <Alt>w
+  search = <Alt>f
 [profiles]
   [[default]]
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
