@@ -6,12 +6,9 @@ set nowrap
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set t_Co=256
 
-" Set GUI options
-set guioptions-=m "remove menu bar
-set guioptions-=T "remove toolbar
-set guioptions-=r "remove right-hand scroll bar
-set guioptions-=L "remove left-hand scroll bar
+nmap ,, :b#<CR>
 
 <% if node['vim']['plugins'].has_key?('nerdtree') %>
 nnoremap \ :NERDTreeToggle<CR>

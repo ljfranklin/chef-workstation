@@ -29,8 +29,7 @@
       "theme": "luan",
       "aliases": [
         "general",
-        "clipboard",
-        "vim"
+        "clipboard"
       ],
       "custom": {
         "aliases": [

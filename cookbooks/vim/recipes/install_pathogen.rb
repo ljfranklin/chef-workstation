@@ -13,9 +13,3 @@ remote_file File.join(vim_path, 'autoload', 'pathogen.vim') do
   owner node['my_user']
   mode '0755'
 end
-
-template "/home/#{node['my_user']}/.vimrc" do
-  source 'vimrc.erb'
-  owner node['my_user']
-  mode '0755'
-end
