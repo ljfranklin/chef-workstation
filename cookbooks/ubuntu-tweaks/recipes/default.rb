@@ -14,10 +14,6 @@ plugins = {
     "left-edge-action" => "4",
     "bottom-right-corner-action" => "3",
     "bottom-left-corner-action" => "1"
-  },
-  "org.gnome.desktop.input-sources" => {
-    # Map caps lock to ESC for VIM
-    "xkb-options" => "\"['caps:escape']\""
   }
 }
 

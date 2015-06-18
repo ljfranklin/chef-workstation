@@ -11,3 +11,8 @@ template "/home/#{node['my_user']}/.gvimrc" do
   owner node['my_user']
   mode '0755'
 end
+
+execute "map-caps-to-esc" do
+  user node['my_user']
+  command "dconf write /org/gnome/desktop/input-sources/xkb-options \"['caps:escape']\""
+end
