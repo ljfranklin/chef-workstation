@@ -17,7 +17,8 @@
     "recipe[ubuntu-tweaks]",
     "recipe[shell-tweaks]",
     "recipe[bash-it]",
-    "recipe[terminator]"
+    "recipe[terminator]",
+    "recipe[duck-dns]"
   ],
   "default_attributes": {
     "my_user": "lyle",

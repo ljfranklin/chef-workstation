@@ -8,4 +8,5 @@ cookbook_path [
 ]
 role_path relative_path('roles')
 environment_path relative_path('environment')
-data_bag_path('data_bag_path')
+data_bag_path relative_path('data_bags')
+encrypted_data_bag_secret relative_path('secrets/my_secret_key')

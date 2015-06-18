@@ -1,0 +1,15 @@
+{
+  "id": "duck_dns",
+  "domain": {
+    "encrypted_data": "SaCqYfUf91YyZnGzctGTDMRT/UmDTR9RKfyxfnZGWX6ShOSFMlBcI/+JptOC\nYyNE\n",
+    "iv": "/YTeChiAM1NX9jxD+oxHJA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "token": {
+    "encrypted_data": "BfaJkl6wijUAX7365eZ2Dt67HDjLiIKB4pmZj0NgcWS+1Osz8SMkPb5833AA\nHA3u1PFZ8SQypvlFlGTeWpdYPw==\n",
+    "iv": "aArXMkyvudWIac4KYmhGZQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}
