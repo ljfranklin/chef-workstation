@@ -10,6 +10,10 @@ vendor/
 .rvmrc
 .rbenv-version
 
+# Secrets
+secrets/
+!secrets/.gitkeep
+
 # Emacs
 *~
 \#*\#
