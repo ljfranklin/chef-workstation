@@ -1,5 +1,5 @@
 {
-  "name": "jules",
+  "description": "Used to setup my desktop",
   "run_list": [
     "role[base]",
     "recipe[nvidia-proprietary-driver]"

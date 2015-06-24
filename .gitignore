@@ -4,6 +4,7 @@ vendor/
 # Chef
 .chef/*.pem
 .chef/encrypted_data_bag_secret
+nodes/
 
 # Ruby
 .rake_test_cache

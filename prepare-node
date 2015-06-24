@@ -7,10 +7,10 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 if [ "$#" -ne 1 ]; then
-  echo -e "${RED}Expected name of node as argument${NC}"
+  echo -e "${RED}Expected name of role as argument${NC}"
   exit 1
 fi
-NODE_NAME=${1}
+ROLE_NAME=${1}
 
 CHEF_OPTS=${CHEF_OPTS:-}
 CHEF_DEBUG=${CHEF_DEBUG:-}
@@ -22,9 +22,9 @@ MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 pushd ${MY_DIR}
 
-  NODE_FILE=nodes/${NODE_NAME}.json
-  if [ ! -e ${NODE_FILE} ]; then
-    echo -e "${RED}Node file ${NODE_FILE} does not exist${NC}"
+  ROLE_FILE=roles/${ROLE_NAME}.json
+  if [ ! -e ${ROLE_FILE} ]; then
+    echo -e "${RED}Role file ${ROLE_FILE} does not exist${NC}"
     exit 1
   fi
 
@@ -32,8 +32,8 @@ pushd ${MY_DIR}
   sudo chef-client \
     --local-mode \
     -c config/solo.rb \
-    -j nodes/${NODE_NAME}.json \
+    -j roles/${ROLE_NAME}.json \
     ${CHEF_OPTS}
 popd
 
-echo -e "${GREEN}Successfully prepared workstation${NC}"
+echo -e "${GREEN}Successfully prepared workstation with role as ${ROLE_NAME}${NC}"

@@ -1,5 +1,5 @@
 {
-  "description": "Used to setup my personal workstations",
+  "description": "Base role used to setup all my personal workstations",
   "run_list": [
     "recipe[apt]",
     "recipe[terminal-utilities]",
