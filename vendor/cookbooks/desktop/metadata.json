@@ -1,0 +1,31 @@
+{
+  "name": "desktop",
+  "description": "LWRP to manage the user's desktop settings",
+  "long_description": "Description\n===========\n\nLWRP to manage desktop's settings for an user.\n\nThere are a lot of user's settings that are managed by a desktop setting system\nas **gconf**, **gsetting** and so. This LWRP let you manage the keys and values\nfor those settings.\n\nRight now it's just supported **gconf** and **gsettings**, but I hope that more\ndesktop settings systems be supported in the future. For example, the one\nused by _KDE_.\n\nThis LWRP born as a need for a project called [GECOS](http://forja.guadalinex.org/plugins/mediawiki/index.php?group_id=105) which is being developed\nby the **Junta de Andalucía**, a local government from the lovely region of Spain:\nAndalusia.\n\n\nRequirements\n============\n\nIn order to use this LWRP from your cookbook or recipe you need to add\nthis cookbook as a dependency at the `metadata.rb` file.\n\nAfter doing that you can do things like:\n\n```ruby\nnode['my_cookbook']['users'].each do |username|\n  desktop_settings \"picture-uri\" do\n    schema   \"org.gnome.desktop.background\"\n    type     \"string\"\n    value    \"/usr/share/background/supecoolbackgroung.jpg\"\n    user     username\n  end\nend\n```\n\n\nUsage\n=====\n\nTo see how this works and how could be used from another cookbook, let's see\nsome examples.\n\nThe LWRP provider by default is `gsettings` as this is the new kid on the block\nand the current default system for GNOME and GNOME apps.\nIf you like to set a specific background to an user you could do something like:\n\nLet's say we have a recipe named `background` with this at the `attributes.rb`:\n\n```ruby\ndefaults['background']['image'] = '/usr/share/background/supecoolbackgroung.jpg'\ndefaults['background']['user']  = 'joe'\n```\n\nAnd this inside the recipe:\n\n```ruby\ndesktop_settings \"picture-uri\" do\n  schema   \"org.gnome.desktop.background\"\n  type     \"string\"\n  value    node['background']['image']\n  user     node['background']['user']\nend\n```\n\nBut we can use also the `gconf` provider to set the _background_ is this is\nthe setting system that use our desktop:\n\n```ruby\ndesktop_settings '/desktop/gnome/background/picture_filename' do\n  type     'string'\n  value    node['background']['image']\n  user     node['background']['user']\n  provider 'desktop_gconf'\nend\n```\n\n\nLicense and Author\n==================\n\nAuthors:\n\n* Roberto C. Morano <rcmorano@emergya.com>\n* Juanje Ojeda <juanje.ojeda@gmail.com>\n\nCopyright 2011-2012 Junta de Andalucía  \nCopyright 2012 Juanje Ojeda <juanje.ojeda@gmail.com>\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n\n",
+  "maintainer": "Juanje Ojeda",
+  "maintainer_email": "juanje.ojeda@gmail.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "ubuntu": ">= 0.0.0",
+    "debian": ">= 0.0.0"
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.1.1"
+}
