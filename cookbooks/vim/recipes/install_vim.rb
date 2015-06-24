@@ -5,6 +5,12 @@ template "/home/#{node['my_user']}/.vimrc" do
   mode '0755'
 end
 
+directory "/home/#{node['my_user']}/.vim" do
+  owner node['my_user']
+  mode '0755'
+  action :create
+end
+
 package 'vim-gnome'
 template "/home/#{node['my_user']}/.gvimrc" do
   source 'gvimrc.erb'
