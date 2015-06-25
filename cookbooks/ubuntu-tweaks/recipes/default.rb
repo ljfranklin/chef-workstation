@@ -17,6 +17,11 @@ plugins = {
   }
 }
 
+service 'lightdm' do
+  action :nothing # triggered via notifications
+  supports :restart => true
+end
+
 plugins.each_pair do |plugin, keys|
   keys.each_pair do |key, value|
     execute "enable-workspaces" do
@@ -24,6 +29,7 @@ plugins.each_pair do |plugin, keys|
 
       command GsettingsHelper.set_gsetting(plugin, key, value)
       not_if GsettingsHelper.gsetting_unchanged?(plugin, key, value), :user => node['my_user']
+      notifies :restart, 'service[lightdm]', :delayed
     end
   end
 end
