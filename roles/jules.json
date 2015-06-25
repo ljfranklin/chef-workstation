@@ -2,6 +2,7 @@
   "description": "Used to setup my desktop",
   "run_list": [
     "role[base]",
+    "recipe[duck-dns]",
     "recipe[nvidia-proprietary-driver]"
   ]
 }
