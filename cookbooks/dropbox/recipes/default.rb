@@ -1,6 +1,9 @@
+# temporary fix until docker adds wily package
+ubuntu_release = (node['lsb']['codename'] == 'wily') ? 'vivid' : node['lsb']['codename']
+
 apt_repository "dropbox" do
   uri "http://linux.dropbox.com/ubuntu"
-  distribution node['lsb']['codename']
+  distribution ubuntu_release
   components ["main"]
   keyserver "pgp.mit.edu"
   key "5044912E"
