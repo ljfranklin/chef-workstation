@@ -48,6 +48,9 @@
          "solarized": "https://github.com/altercation/vim-colors-solarized.git",
          "commentary": "https://github.com/tpope/vim-commentary.git"
        }
+    },
+    "firewall": {
+      "allow_ssh": true
     }
   }
 }
