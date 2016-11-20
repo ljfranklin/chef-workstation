@@ -1,5 +1,7 @@
 include_recipe 'steam::open_ports'
 
+package "python-apt"
+
 remote_file "/tmp/steam.deb" do
   source "http://media.steampowered.com/client/installer/steam.deb"
   mode 0644

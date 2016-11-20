@@ -1,5 +1,6 @@
 apt_repository "spotify" do
   uri "http://repository.spotify.com"
+  distribution nil
   components ["stable", "non-free"]
   keyserver 'hkp://keyserver.ubuntu.com:80'
   key 'D2C19886'

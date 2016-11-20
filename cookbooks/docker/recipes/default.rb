@@ -1,9 +1,10 @@
 apt_repository "docker" do
-  uri "https://get.docker.com/ubuntu"
-  components ["docker", "main"]
-  keyserver "hkp://p80.pool.sks-keyservers.net:80"
-  key "36A1D7869245C8950F966E92D8576A8BA88D21E9"
+  uri "https://apt.dockerproject.org/repo"
+  components ["main"]
+  distribution "ubuntu-#{node['lsb']['codename']}"
+  keyserver "hkp://ha.pool.sks-keyservers.net:80"
+  key "58118E89F3A912897C070ADBF76221572C52609D"
   action :add
 end
 
-package "lxc-docker"
+package "docker-engine"
