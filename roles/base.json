@@ -28,13 +28,13 @@
       "theme": "luan",
       "aliases": [
         "general",
+        "git",
         "clipboard"
       ],
+      "plugins": [
+        "base"
+      ],
       "custom": {
-        "aliases": [
-          "gst",
-          "mkcd"
-        ],
         "plugins": [
           "history-arrow-keys"
         ]
