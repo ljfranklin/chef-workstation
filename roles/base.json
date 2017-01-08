@@ -1,5 +1,6 @@
 {
   "description": "Base role used to setup all my personal workstations",
+  "chef_type": "role",
   "run_list": [
     "recipe[apt]",
     "recipe[terminal-utilities]",
@@ -19,7 +20,6 @@
     "recipe[terminator]"
   ],
   "default_attributes": {
-    "my_user": "lyle",
     "git": {
       "name": "Lyle Franklin",
       "email": "lylejfranklin@gmail.com"

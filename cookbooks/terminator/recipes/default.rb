@@ -6,14 +6,14 @@ end
 
 package 'terminator'
 
-directory "/home/#{node['my_user']}/.config/terminator" do
-  owner node['my_user']
+directory "/home/#{ENV['SUDO_USER']}/.config/terminator" do
+  owner ENV['SUDO_USER']
   mode '0755'
   action :create
 end
 
-template "/home/#{node['my_user']}/.config/terminator/config" do
+template "/home/#{ENV['SUDO_USER']}/.config/terminator/config" do
   source 'config'
-  owner node['my_user']
+  owner ENV['SUDO_USER']
   mode "0755"
 end

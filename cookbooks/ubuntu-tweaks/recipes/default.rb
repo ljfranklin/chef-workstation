@@ -25,10 +25,10 @@ end
 plugins.each_pair do |plugin, keys|
   keys.each_pair do |key, value|
     execute "enable-workspaces" do
-      user node['my_user']
+      user ENV['SUDO_USER']
 
       command GsettingsHelper.set_gsetting(plugin, key, value)
-      not_if GsettingsHelper.gsetting_unchanged?(plugin, key, value), :user => node['my_user']
+      not_if GsettingsHelper.gsetting_unchanged?(plugin, key, value), :user => ENV['SUDO_USER']
       notifies :restart, 'service[lightdm]', :delayed
     end
   end

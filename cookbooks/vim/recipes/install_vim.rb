@@ -1,24 +1,24 @@
 package 'vim'
-template "/home/#{node['my_user']}/.vimrc" do
+template "/home/#{ENV['SUDO_USER']}/.vimrc" do
   source 'vimrc.erb'
-  owner node['my_user']
+  owner ENV['SUDO_USER']
   mode '0755'
 end
 
-directory "/home/#{node['my_user']}/.vim" do
-  owner node['my_user']
+directory "/home/#{ENV['SUDO_USER']}/.vim" do
+  owner ENV['SUDO_USER']
   mode '0755'
   action :create
 end
 
 package 'vim-gnome'
-template "/home/#{node['my_user']}/.gvimrc" do
+template "/home/#{ENV['SUDO_USER']}/.gvimrc" do
   source 'gvimrc.erb'
-  owner node['my_user']
+  owner ENV['SUDO_USER']
   mode '0755'
 end
 
 execute "map-caps-to-esc" do
-  user node['my_user']
+  user ENV['SUDO_USER']
   command "dconf write /org/gnome/desktop/input-sources/xkb-options \"['caps:escape']\""
 end

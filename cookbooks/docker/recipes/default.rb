@@ -8,3 +8,7 @@ apt_repository "docker" do
 end
 
 package "docker-engine"
+
+service 'docker' do
+  action :enable
+end
