@@ -34,6 +34,9 @@
       "plugins": [
         "base"
       ],
+      "completion": [
+        "git"
+      ],
       "custom": {
         "plugins": [
           "history-arrow-keys"
