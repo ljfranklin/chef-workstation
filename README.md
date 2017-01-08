@@ -7,6 +7,7 @@ A collection of chef cookbooks used to provision my personal workstations.
 sudo apt-get update
 sudo apt-get install curl git
 curl -L https://www.chef.io/chef/install.sh | sudo bash
+sudo gem install berkshelf
 ```
 
 #### Prepare workstation (uses `chef-client --local-mode`)

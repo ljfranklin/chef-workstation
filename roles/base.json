@@ -17,7 +17,8 @@
     "recipe[ubuntu-tweaks]",
     "recipe[shell-tweaks]",
     "recipe[bash-it]",
-    "recipe[terminator]"
+    "recipe[terminator]",
+    "recipe[go]"
   ],
   "default_attributes": {
     "git": {
@@ -39,9 +40,14 @@
       ],
       "custom": {
         "plugins": [
-          "history-arrow-keys"
+          "history-arrow-keys",
+          "go"
         ]
       }
+    },
+    "go": {
+      "version": "1.7.4",
+      "gopath": "/home/lyle/go"
     },
     "vim": {
        "plugins": {
