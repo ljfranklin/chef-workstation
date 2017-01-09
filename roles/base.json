@@ -3,6 +3,7 @@
   "chef_type": "role",
   "run_list": [
     "recipe[apt]",
+    "recipe[direnv]",
     "recipe[terminal-utilities]",
     "recipe[git]",
     "recipe[chrome]",
@@ -40,6 +41,7 @@
       ],
       "custom": {
         "plugins": [
+          "direnv",
           "history-arrow-keys",
           "go"
         ]
