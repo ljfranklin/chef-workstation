@@ -1,6 +1,7 @@
 {
   "description": "Used to setup my laptop",
   "run_list": [
-    "role[base]"
+    "role[base]",
+    "recipe[trackpad]"
   ]
 }
