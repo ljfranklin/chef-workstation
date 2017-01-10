@@ -3,6 +3,7 @@
   "chef_type": "role",
   "run_list": [
     "recipe[apt]",
+    "recipe[diodon]",
     "recipe[direnv]",
     "recipe[terminal-utilities]",
     "recipe[git]",
@@ -19,7 +20,8 @@
     "recipe[shell-tweaks]",
     "recipe[bash-it]",
     "recipe[terminator]",
-    "recipe[go]"
+    "recipe[go]",
+    "recipe[yubikey]"
   ],
   "default_attributes": {
     "git": {
