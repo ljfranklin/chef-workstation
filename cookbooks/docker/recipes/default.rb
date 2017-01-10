@@ -9,6 +9,12 @@ end
 
 package "docker-engine"
 
+group 'docker' do
+  action :modify
+  append true
+  members [ENV['SUDO_USER']]
+end
+
 service 'docker' do
   action :enable
 end
