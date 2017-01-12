@@ -1,0 +1,4 @@
+" vimrc.local.before
+" These commands will be run before plugins are loaded
+
+let g:airline_powerline_fonts = 1

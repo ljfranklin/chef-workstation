@@ -9,7 +9,7 @@
     "recipe[git]",
     "recipe[chrome]",
     "recipe[firefox]",
-    "recipe[vim]",
+    "recipe[go]",
     "recipe[spotify]",
     "recipe[ssh-server]",
     "recipe[docker]",
@@ -20,8 +20,8 @@
     "recipe[shell-tweaks]",
     "recipe[bash-it]",
     "recipe[terminator]",
-    "recipe[go]",
-    "recipe[yubikey]"
+    "recipe[yubikey]",
+    "recipe[vim]"
   ],
   "default_attributes": {
     "git": {
