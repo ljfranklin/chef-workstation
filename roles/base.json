@@ -64,6 +64,9 @@
         }
       },
       "plugins": {
+        "org.gnome.desktop.input-sources": {
+          "xkb-options": "['ctrl:nocaps']"
+        },
         "org.compiz.core:/org/compiz/profiles/unity/plugins/core/": {
           "hsize": "4"
         },
