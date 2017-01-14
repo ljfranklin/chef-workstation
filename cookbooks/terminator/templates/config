@@ -17,7 +17,7 @@
     background_color = "#002b36"
     cursor_color = "#eee8d5"
     use_system_font = false
-    font = Ubuntu Mono 13
+    font = Ubuntu Mono derivative Powerline 13
     show_titlebar = false
 
 [layouts]

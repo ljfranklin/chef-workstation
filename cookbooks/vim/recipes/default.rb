@@ -2,23 +2,8 @@ package 'deps' do
   package_name %w(python-dev python-pip python3-dev python3-pip)
 end
 
-# install fonts
-git File.join(Chef::Config[:file_cache_path], 'powerline') do
-  repository 'https://github.com/powerline/fonts.git'
-  user ENV['SUDO_USER']
-  action :sync
-end
-bash 'install-fonts' do
-  code <<-EOH
-  font_dir=/usr/local/share/fonts/
-  mkdir -p ${font_dir}
-  find . -name '*.[o,t]tf' -type f -print0 | xargs -0 -I % cp "%" ${font_dir}
-  fc-cache -f ${font_dir}
-  EOH
-  cwd File.join(Chef::Config[:file_cache_path], 'powerline')
-end
-
 # TODO: Couldn't get neovim to properly load the theme or font
+#       Should be fixed by terminator gtk3 branch or tmux
 # apt_repository 'neovim-ppa' do
 #   uri 'http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu'
 #   distribution node['lsb']['codename']
