@@ -30,7 +30,7 @@ pushd ${MY_DIR}
 
   echo -e "Preparing workstation..."
   berks vendor ./vendor/cookbooks
-  sudo chef-client \
+  sudo -E chef-client \
     --local-mode \
     -c config/solo.rb \
     -j roles/${ROLE_NAME}.json \
