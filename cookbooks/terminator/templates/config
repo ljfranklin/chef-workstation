@@ -5,11 +5,26 @@
 [keybindings]
   reset_clear = <Alt>r
   new_tab = <Alt>t
+  edit_window_title = <Alt><Shift>t
   split_horiz = <Alt><Shift>d
   split_vert = <Alt>d
   close_term = <Alt>w
   search = <Alt>f
-  toggle_zoom = <Alt><Shift>x
+  toggle_zoom = <Shift><Alt>Return
+  cycle_next = <Alt>bracketright
+  cycle_prev = <Alt>bracketleft
+  next_tab = <Primary>Tab
+  prev_tab = <Primary><Shift>Tab
+  switch_to_tab_1 = <Alt>1
+  switch_to_tab_2 = <Alt>2
+  switch_to_tab_3 = <Alt>3
+  switch_to_tab_4 = <Alt>4
+  switch_to_tab_5 = <Alt>5
+  switch_to_tab_6 = <Alt>6
+  switch_to_tab_7 = <Alt>7
+  switch_to_tab_8 = <Alt>8
+  switch_to_tab_9 = <Alt>9
+  switch_to_tab_10 = <Alt>0
 [profiles]
   [[default]]
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
