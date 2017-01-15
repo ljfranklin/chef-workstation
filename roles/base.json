@@ -7,6 +7,7 @@
     "recipe[direnv]",
     "recipe[terminal-utilities]",
     "recipe[git]",
+    "recipe[nodejs]",
     "recipe[chrome]",
     "recipe[firefox]",
     "recipe[go]",
