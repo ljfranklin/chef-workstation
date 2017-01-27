@@ -83,7 +83,7 @@
           "left-edge-action": "4",
           "bottom-right-corner-action": "3",
           "bottom-left-corner-action": "1",
-          "put-maximize-key": "'<Control><Alt><Super>f'",
+          "put-center-key": "'<Control><Alt><Super>m'",
           "put-left-key": "'<Control><Alt><Super>Left'",
           "put-right-key": "'<Control><Alt><Super>Right'",
           "put-bottom-key": "'<Control><Alt><Super>Down'",
