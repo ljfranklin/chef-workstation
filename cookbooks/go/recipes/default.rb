@@ -34,3 +34,9 @@ directory node['go']['gobin'] do
   recursive true
   owner ENV['SUDO_USER']
 end
+
+template "#{node['go']['gopath']}/.envrc" do
+  source "envrc.erb"
+  owner ENV['SUDO_USER']
+  mode "0755"
+end
