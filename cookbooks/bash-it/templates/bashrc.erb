@@ -6,3 +6,11 @@ export BASH_IT_THEME="<%= node["bash-it"]["theme"] %>"
 
 # Load Bash It
 source $BASH_IT/bash_it.sh
+
+# Fix Tilix VTE Issue
+# https://github.com/gnunn1/tilix/wiki/VTE-Configuration-Issue
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+  orig_prompt="${PROMPT_COMMAND}"
+  source /etc/profile.d/vte.sh
+  PROMPT_COMMAND="${orig_prompt};__vte_osc7"
+fi

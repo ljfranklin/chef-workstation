@@ -20,7 +20,7 @@
     "recipe[ubuntu-tweaks]",
     "recipe[shell-tweaks]",
     "recipe[bash-it]",
-    "recipe[terminator]",
+    "recipe[tilix]",
     "recipe[yubikey]",
     "recipe[vim]"
   ],

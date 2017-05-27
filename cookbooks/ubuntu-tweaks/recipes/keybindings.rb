@@ -1,3 +1,5 @@
+::Chef::Resource::Execute.send(:include, GsettingsHelper)
+
 # WARNING: these keybindings will clobber any existing custom keybindings
 keybindings = node['ubuntu-tweaks']['keybindings']
 
@@ -16,8 +18,8 @@ execute 'set-keybinding-list' do
   end
   value = "[#{keybinding_list.join(',')}]"
 
-  command GsettingsHelper.set_gsetting(keybinding_plugin, 'custom-keybindings', value)
-  not_if GsettingsHelper.gsetting_unchanged?(keybinding_plugin, 'custom-keybindings', value), :user => ENV['SUDO_USER']
+  command set_gsetting(keybinding_plugin, 'custom-keybindings', value)
+  not_if gsetting_unchanged?(keybinding_plugin, 'custom-keybindings', value), :user => ENV['SUDO_USER']
 end
 
 binding_count = 0
@@ -27,22 +29,22 @@ keybindings.each do |name, binding|
     user ENV['SUDO_USER']
 
     value = "'#{name}'"
-    command GsettingsHelper.set_gsetting(key_plugin, 'name', value)
-    not_if GsettingsHelper.gsetting_unchanged?(key_plugin, 'name', value), :user => ENV['SUDO_USER']
+    command set_gsetting(key_plugin, 'name', value)
+    not_if gsetting_unchanged?(key_plugin, 'name', value), :user => ENV['SUDO_USER']
   end
   execute "set-keybinding-command" do
     user ENV['SUDO_USER']
 
     value = "'#{binding['command']}'"
-    command GsettingsHelper.set_gsetting(key_plugin, 'command', value)
-    not_if GsettingsHelper.gsetting_unchanged?(key_plugin, 'command', value), :user => ENV['SUDO_USER']
+    command set_gsetting(key_plugin, 'command', value)
+    not_if gsetting_unchanged?(key_plugin, 'command', value), :user => ENV['SUDO_USER']
   end
   execute "set-keybinding-binding" do
     user ENV['SUDO_USER']
 
     value = "'#{binding['binding']}'"
-    command GsettingsHelper.set_gsetting(key_plugin, 'binding', value)
-    not_if GsettingsHelper.gsetting_unchanged?(key_plugin, 'binding', value), :user => ENV['SUDO_USER']
+    command set_gsetting(key_plugin, 'binding', value)
+    not_if gsetting_unchanged?(key_plugin, 'binding', value), :user => ENV['SUDO_USER']
   end
   binding_count += 1
 end
