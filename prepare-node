@@ -29,6 +29,7 @@ pushd ${MY_DIR}
   fi
 
   echo -e "Preparing workstation..."
+  sudo chown -R "$(whoami):$(whoami)" config/local-mode-cache
   berks vendor ./vendor/cookbooks
   sudo -E chef-client \
     --local-mode \

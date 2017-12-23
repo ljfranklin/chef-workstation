@@ -1,5 +1,5 @@
 #
-# Copyright 2015, Noah Kantrowitz
+# Copyright 2015-2016, Noah Kantrowitz
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ require 'chef/node_map'
 require 'chef/provider'
 require 'chef/resource'
 
+require 'poise/backports'
 require 'poise/helpers/defined_in'
 require 'poise/error'
 require 'poise/helpers/inversion/options_resource'
@@ -77,11 +78,26 @@ module Poise
         #   end
         def provider(val=nil)
           if val && !val.is_a?(Class)
-            provider_class = Poise::Helpers::Inversion.provider_for(resource_name, node, val)
-            Chef::Log.debug("[#{self}] Checking for an inversion provider for #{val}: #{provider_class && provider_class.name}")
+            resource_names = [resource_name]
+            # If subclass_providers! might be in play, check for those names too.
+            resource_names.concat(self.class.subclass_resource_equivalents) if self.class.respond_to?(:subclass_resource_equivalents)
+            # Silly ruby tricks to find the first provider that exists and no more.
+            provider_class = resource_names.lazy.map {|name| Poise::Helpers::Inversion.provider_for(name, node, val) }.select {|x| x }.first
+            Poise.debug("[#{self}] Checking for an inversion provider for #{val}: #{provider_class && provider_class.name}")
             val = provider_class if provider_class
           end
           super
+        end
+
+        # Set or return the array of provider names to be blocked from
+        # auto-resolution.
+        #
+        # @param val [String, Array<String>] Value to set.
+        # @return [Array<String>]
+        def provider_no_auto(val=nil)
+          # Coerce to an array.
+          val = Array(val).map(&:to_s) if val
+          set_or_return(:provider_no_auto, val, kind_of: Array, default: [])
         end
 
         # @!classmethods
@@ -117,6 +133,9 @@ module Poise
               define_singleton_method(:name) do
                 "#{enclosing_class}::OptionsResource"
               end
+              define_singleton_method(:inversion_resource_class) do
+                enclosing_class
+              end
               provides(options_resource_name)
               inversion_resource(name)
             end
@@ -126,6 +145,9 @@ module Poise
               define_singleton_method(:name) do
                 "#{enclosing_class}::OptionsProvider"
               end
+              define_singleton_method(:inversion_resource_class) do
+                enclosing_class
+              end
               provides(options_resource_name)
             end
           end
@@ -134,9 +156,9 @@ module Poise
           #
           # @param name [Symbol] Resource name
           # return [void]
-          def provides(name)
+          def provides(name, *args, &block)
             create_inversion_options_resource!(name) if inversion_options_resource
-            super if defined?(super)
+            super(name, *args, &block) if defined?(super)
           end
 
           def included(klass)
@@ -170,40 +192,48 @@ module Poise
         module ClassMethods
           # @overload inversion_resource()
           #   Return the inversion resource name for this class.
-          #   @return [Symbol]
+          #   @return [Symbo, nill]
           # @overload inversion_resource(val)
           #   Set the inversion resource name for this class. You can pass either
           #   a symbol in DSL format or a resource class that uses Poise. This
           #   name is used to determine which resources the inversion provider is
           #   a candidate for.
           #   @param val [Symbol, Class] Name to set.
-          #   @return [Symbol]
-          def inversion_resource(val=nil)
-            if val
+          #   @return [Symbol, nil]
+          def inversion_resource(val=Poise::NOT_PASSED)
+            if val != Poise::NOT_PASSED
               val = val.resource_name if val.is_a?(Class)
               Chef::Log.debug("[#{self.name}] Setting inversion resource to #{val}")
               @poise_inversion_resource = val.to_sym
             end
-            @poise_inversion_resource || (superclass.respond_to?(:inversion_resource) ? superclass.inversion_resource : nil)
+            if defined?(@poise_inversion_resource)
+              @poise_inversion_resource
+            else
+              Poise::Utils.ancestor_send(self, :inversion_resource, default: nil)
+            end
           end
 
           # @overload inversion_attribute()
           #   Return the inversion attribute name(s) for this class.
-          #   @return [Array<String>]
+          #   @return [Array<String>, nil]
           # @overload inversion_attribute(val)
           #   Set the inversion attribute name(s) for this class. This is
           #   used by {.resolve_inversion_attribute} to load configuration data
           #   from node attributes. To specify a nested attribute pass an array
           #   of strings corresponding to the keys.
           #   @param val [String, Array<String>] Attribute path.
-          #   @return [Array<String>]
-          def inversion_attribute(val=nil)
-            if val
+          #   @return [Array<String>, nil]
+          def inversion_attribute(val=Poise::NOT_PASSED)
+            if val != Poise::NOT_PASSED
               # Coerce to an array of strings.
               val = Array(val).map {|name| name.to_s }
               @poise_inversion_attribute = val
             end
-            @poise_inversion_attribute || (superclass.respond_to?(:inversion_attribute) ? superclass.inversion_attribute : nil)
+            if defined?(@poise_inversion_attribute)
+              @poise_inversion_attribute
+            else
+              Poise::Utils.ancestor_send(self, :inversion_attribute, default: nil)
+            end
           end
 
           # Default attribute paths to check for inversion options. Based on
@@ -235,6 +265,7 @@ module Poise
           def resolve_inversion_attribute(node)
             # Default to using just the name of the cookbook.
             attribute_names = inversion_attribute || default_inversion_attributes(node)
+            return {} if attribute_names.empty?
             attribute_names.inject(node) do |memo, key|
               memo[key] || begin
                 raise Poise::Error.new("Attribute #{key} not set when expanding inversion attribute for #{self.name}: #{memo}")
@@ -257,19 +288,21 @@ module Poise
               # Class-level defaults.
               opts.update(default_inversion_options(node, resource))
               # Resource options for all providers.
-              opts.update(resource.options)
+              opts.update(resource.options) if resource.respond_to?(:options)
               # Global provider from node attributes.
               opts.update(provider: attrs['provider']) if attrs['provider']
               # Attribute options for all providers.
               opts.update(attrs['options']) if attrs['options']
               # Resource options for this provider.
-              opts.update(resource.options(provides))
+              opts.update(resource.options(provides)) if resource.respond_to?(:options)
               # Attribute options for this resource name.
               opts.update(attrs[resource.name]) if attrs[resource.name]
               # Options resource options for all providers.
               opts.update(run_state['*']) if run_state['*']
               # Options resource options for this provider.
               opts.update(run_state[provides]) if run_state[provides]
+              # Vomitdebug output for tracking down weirdness.
+              Poise.debug("[#{resource}] Resolved inversion options: #{opts.inspect}")
             end
           end
 
@@ -323,10 +356,17 @@ module Poise
           # @return [Boolean]
           def provides?(node, resource)
             raise Poise::Error.new("Inversion resource name not set for #{self.name}") unless inversion_resource
-            return false unless resource.resource_name == inversion_resource
-            provider_name = resolve_inversion_provider(node, resource)
-            Chef::Log.debug("[#{resource}] Checking provides? on #{self.name}. Got provider_name #{provider_name.inspect}")
-            provider_name == provides.to_s || ( provider_name == 'auto' && provides_auto?(node, resource) )
+            resource_name_equivalents = {resource.resource_name => true}
+            # If subclass_providers! might be in play, check for those names too.
+            if resource.class.respond_to?(:subclass_resource_equivalents)
+              resource.class.subclass_resource_equivalents.each do |name|
+                resource_name_equivalents[name] = true
+              end
+            end
+            return false unless resource_name_equivalents[inversion_resource]
+            provider_name = resolve_inversion_provider(node, resource).to_s
+            Poise.debug("[#{resource}] Checking provides? on #{self.name}. Got provider_name #{provider_name.inspect}")
+            provider_name == provides.to_s || ( provider_name == 'auto' && !resource.provider_no_auto.include?(provides.to_s) && provides_auto?(node, resource) )
           end
 
           # Subclass hook to provide auto-detection for providers.

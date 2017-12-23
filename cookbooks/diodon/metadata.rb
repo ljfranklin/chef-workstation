@@ -1,0 +1,3 @@
+name 'diodon'
+
+depends 'pacman'

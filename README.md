@@ -2,12 +2,20 @@
 
 A collection of chef cookbooks used to provision my personal workstations.
 
-#### Install chef-client
+#### Install chef-client (Ubuntu)
 ```
 sudo apt-get update
 sudo apt-get install curl git
 curl -L https://www.chef.io/chef/install.sh | sudo bash
 sudo gem install berkshelf
+```
+
+#### Install chef-client (Arch)
+```
+sudo pacman -S git ruby base-devel
+git clone https://aur.archlinux.org/chef-dk.git && cd chef-dk
+makepkg -si
+gem install berkshelf
 ```
 
 #### Prepare workstation (uses `chef-client --local-mode`)

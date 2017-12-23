@@ -1,9 +1,13 @@
 DEPENDENCIES
   apt (~> 2.7.0)
   firewall (~> 1.2.0)
+  pacman
+    git: https://github.com/ljfranklin/pacman.git
+    revision: 3ad47e1895a534796ab20fcbeaea8c96c3bbb80e
 
 GRAPH
   apt (2.7.0)
   firewall (1.2.0)
     poise (~> 2.0)
-  poise (2.0.1)
+  pacman (2.0.1)
+  poise (2.8.1)

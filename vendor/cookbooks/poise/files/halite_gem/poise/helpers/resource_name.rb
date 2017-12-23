@@ -1,5 +1,5 @@
 #
-# Copyright 2013-2015, Noah Kantrowitz
+# Copyright 2013-2016, Noah Kantrowitz
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ module Poise
         #     include Poise::Resource::ResourceName
         #     provides(:my_resource)
         #   end
-        def provides(name)
+        def provides(name, *args, &block)
           # Patch self.constantize so this can cope with anonymous classes.
           # This does require that the anonymous class define self.name though.
           if self.name && respond_to?(:constantize)
@@ -61,9 +61,9 @@ module Poise
             end
           end
           # Store the name for later.
-          @provides_name = name
+          @provides_name ||= name
           # Call the original if present. The defined? is for old Chef.
-          super if defined?(super)
+          super(name, *args, &block) if defined?(super)
         end
 
         # Retreive the DSL name for the resource class. If not set explicitly
@@ -72,11 +72,19 @@ module Poise
         # @param auto [Boolean] Try to auto-detect based on class name.
         # @return [Symbol]
         def resource_name(auto=true)
-          return @provides_name if @provides_name
-          @provides_name || if name && name.start_with?('Chef::Resource')
-            Chef::Mixin::ConvertToClassName.convert_to_snake_case(name, 'Chef::Resource').to_sym
-          elsif name
-            Chef::Mixin::ConvertToClassName.convert_to_snake_case(name.split('::').last).to_sym
+          # In 12.4+ we need to proxy through the super class for setting.
+          return super(auto) if defined?(super) && (auto.is_a?(Symbol) || auto.is_a?(String))
+          return @provides_name unless auto
+          @provides_name || if name
+            mode = if name.start_with?('Chef::Resource')
+              [name, 'Chef::Resource']
+            else
+              [name.split('::').last]
+            end
+            Chef::Mixin::ConvertToClassName.convert_to_snake_case(*mode).to_sym
+          elsif defined?(super)
+            # No name on 12.4+ probably means this is an LWRP, use super().
+            super()
           end
         end
 

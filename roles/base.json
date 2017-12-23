@@ -17,10 +17,8 @@
     "recipe[steam]",
     "recipe[skype]",
     "recipe[vagrant]",
-    "recipe[ubuntu-tweaks]",
     "recipe[shell-tweaks]",
     "recipe[bash-it]",
-    "recipe[tilix]",
     "recipe[yubikey]",
     "recipe[vim]"
   ],
@@ -30,7 +28,7 @@
       "email": "lylejfranklin@gmail.com"
     },
     "bash-it": {
-      "theme": "luan",
+      "theme": "zork",
       "aliases": [
         "general",
         "git",
@@ -56,40 +54,6 @@
     },
     "firewall": {
       "allow_ssh": true
-    },
-    "ubuntu-tweaks": {
-      "keybindings": {
-        "Diodon": {
-          "command": "/usr/bin/diodon",
-          "binding": "<Shift><Alt>v"
-        }
-      },
-      "plugins": {
-        "org.gnome.desktop.input-sources": {
-          "xkb-options": "['ctrl:nocaps']"
-        },
-        "org.compiz.core:/org/compiz/profiles/unity/plugins/core/": {
-          "hsize": "4"
-        },
-        "org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/": {
-          "disable-show-desktop": "true",
-          "disable-mouse": "true"
-        },
-        "org.compiz.grid:/org/compiz/profiles/unity/plugins/grid/": {
-          "top-edge-action": "10",
-          "top-right-corner-action": "9",
-          "top-left-corner-action": "7",
-          "right-edge-action": "6",
-          "left-edge-action": "4",
-          "bottom-right-corner-action": "3",
-          "bottom-left-corner-action": "1",
-          "put-center-key": "'<Control><Alt><Super>m'",
-          "put-left-key": "'<Control><Alt><Super>Left'",
-          "put-right-key": "'<Control><Alt><Super>Right'",
-          "put-bottom-key": "'<Control><Alt><Super>Down'",
-          "put-top-key": "'<Control><Alt><Super>Up'"
-        }
-      }
     }
   }
 }
