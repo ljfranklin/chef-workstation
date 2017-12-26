@@ -3,7 +3,7 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "run_list": [
-    "recipe[xmodmap]"
+    "recipe[bash-it]"
   ],
   "default_attributes": {
     "bash-it": {
@@ -15,6 +15,7 @@
       ],
       "plugins": [
         "base",
+        "sshagent",
         "ruby"
       ],
       "completion": [

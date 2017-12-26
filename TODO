@@ -11,7 +11,7 @@
 [x] setup vim
 [x] setup bash-it
 [x] remap caps-lock to ctrl
-[ ] start ssh-agent on login
+[x] start ssh-agent on login
 [ ] install rofi instead of dmenu
     - https://github.com/DaveDavenport/rofi
 [ ] install clipboard manager, clipmenu?
