@@ -14,7 +14,7 @@
 [x] start ssh-agent on login
 [x] install rofi instead of dmenu
     - https://github.com/DaveDavenport/rofi
-[ ] install clipboard manager, clipmenu?
+[x] install clipboard manager, clipmenu?
     - https://github.com/cdown/clipmenu
 [ ] background (xsetroot?)
 [ ] automatically mount and decrypt usb key
