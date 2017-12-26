@@ -16,10 +16,11 @@
     - https://github.com/DaveDavenport/rofi
 [x] install clipboard manager, clipmenu?
     - https://github.com/cdown/clipmenu
-[ ] background (xsetroot?)
-[ ] automatically mount and decrypt usb key
+[x] background (xsetroot?)
 [ ] lock screen with password
 [ ] login screen
+[ ] automatically mount and decrypt usb key
+[ ] git duet
 [ ] printer
 [ ] encrypt entire drive
 [ ] create bootstrapping script
