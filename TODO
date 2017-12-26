@@ -1,10 +1,21 @@
 # TODO on Arch
 
-- Automatically mount and decrypt usb key
-- encrypt entire drive
-- bind function keys
-- install power management tool
+[x] get pacman_aur helper working
+[x] bind function keys
+[x] install i3, xorg, intel driver, generate .xinitrc file
+[ ] setup bash-it
+[ ] install rofi instead of dmenu
+    - https://github.com/DaveDavenport/rofi
+[ ] install clipboard manager, clipmenu?
+    - https://github.com/cdown/clipmenu
+[ ] automatically mount and decrypt usb key
+[ ] lock screen with password
+[ ] login screen
+[ ] printer
+[ ] encrypt entire drive
+[ ] create bootstrapping script
 
 ## Future
 
-- write blog post
+[ ] write blog post
+[ ] PR pacman_aur to built-in chef pacman_package

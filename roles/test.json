@@ -1,0 +1,9 @@
+{
+  "description": "Temp: testing new arch setup",
+  "chef_type": "role",
+  "run_list": [
+    "recipe[xbindkeys]",
+    "recipe[xorg]",
+    "recipe[i3]"
+  ]
+}
