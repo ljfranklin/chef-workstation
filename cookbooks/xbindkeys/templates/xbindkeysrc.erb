@@ -1,0 +1,14 @@
+"pactl set-sink-mute 0 toggle"
+    XF86AudioMute
+
+"pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%"
+    XF86AudioLowerVolume
+
+"pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"
+    XF86AudioRaiseVolume
+
+"xbacklight -dec 10 ; [ $(awk 'BEGIN{ print $(xbacklight -get)<1 }') -eq 1 ] && xbacklight -set 1"
+    XF86MonBrightnessDown
+
+"xbacklight -inc 10"
+    XF86MonBrightnessUp
