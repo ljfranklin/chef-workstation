@@ -3,7 +3,13 @@
 [x] get pacman_aur helper working
 [x] bind function keys
 [x] install i3, xorg, intel driver, generate .xinitrc file
-[ ] setup bash-it
+[x] add i3-style
+    - ~/.config/i3/config
+    - change font to `font pango:DejaVu Sans Mono 12`
+[x] customize i3status colors, add volume indicator
+    - ~/.config/i3status/config
+[x] setup vim
+[x] setup bash-it
 [ ] install rofi instead of dmenu
     - https://github.com/DaveDavenport/rofi
 [ ] install clipboard manager, clipmenu?

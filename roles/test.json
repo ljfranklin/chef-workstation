@@ -1,9 +1,34 @@
 {
   "description": "Temp: testing new arch setup",
   "chef_type": "role",
+  "json_class": "Chef::Role",
   "run_list": [
-    "recipe[xbindkeys]",
-    "recipe[xorg]",
-    "recipe[i3]"
-  ]
+    "recipe[bash-it]"
+  ],
+  "default_attributes": {
+    "bash-it": {
+      "theme": "zork",
+      "aliases": [
+        "general",
+        "git",
+        "clipboard"
+      ],
+      "plugins": [
+        "base",
+        "ruby"
+      ],
+      "completion": [
+        "git"
+      ],
+      "custom": {
+        "plugins": [
+          "direnv",
+          "history-arrow-keys",
+          "go",
+          "chruby-auto",
+          "vim"
+        ]
+      }
+    }
+  }
 }
