@@ -3,7 +3,7 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "run_list": [
-    "recipe[bash-it]"
+    "recipe[xmodmap]"
   ],
   "default_attributes": {
     "bash-it": {
