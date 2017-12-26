@@ -3,6 +3,7 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "run_list": [
+    "recipe[i3]",
     "recipe[bash-it]"
   ],
   "default_attributes": {

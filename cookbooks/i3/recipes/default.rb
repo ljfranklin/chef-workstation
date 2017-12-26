@@ -1,5 +1,6 @@
 case node['platform']
 when 'arch'
+  package 'rofi'
   pacman_group 'i3' do
     action :install
   end
