@@ -1,0 +1,37 @@
+#!/bin/bash
+
+rofi -theme-str '#window {location: center; anchor: center;}' -width -50 -e \
+'=================================================
+i3 cheat sheet
+=================================================
+
+windows:
+$mod + j               🢂  focus left
+$mod + k               🢂  focus down
+$mod + l               🢂  focus up
+$mod + ;               🢂  focus right
+$mod + <shift> + j     🢂  move window left
+$mod + <shift> + k     🢂  move window down
+$mod + <shift> + l     🢂  move window up
+$mod + <shift> + ;     🢂  move window right
+$mod + f               🢂  toggle fullscreen
+$mod + v               🢂  split vertically
+$mod + h               🢂  split horizontally
+
+resizing:
+$mod + r               🢂  enter resize mode
+enter                  🢂  leave resize mode
+j                      🢂  shrink width by 10px
+k                      🢂  grow height by 10px
+l                      🢂  shrink height by 10px
+;                      🢂  grow width by 10px
+
+workspaces:
+$mod + [0-9]           🢂  switch to workspace
+$mod + <shift> + [0-9] 🢂  move window to workspace
+
+launchers:
+$mod + d               🢂  open app launcher
+$mod + p               🢂  open clipboard manager
+$mod + <shift> + r     🢂  restart i3
+$mod + `               🢂  show this help text'

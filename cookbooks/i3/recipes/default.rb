@@ -77,3 +77,9 @@ template '/etc/X11/xinit/xinitrc.d/60-background.sh' do
   })
 end
 
+template "#{ENV['HOME']}/.config/i3/i3-cheat-sheet.sh" do
+  source 'i3-cheat-sheet.sh.erb'
+  mode '0755'
+  owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
+end

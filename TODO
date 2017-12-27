@@ -17,6 +17,7 @@
 [x] install clipboard manager, clipmenu?
     - https://github.com/cdown/clipmenu
 [x] background (xsetroot?)
+[x] show i3 cheat sheet on login
 [ ] lock screen with password
 [ ] login screen
 [ ] automatically mount and decrypt usb key

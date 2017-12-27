@@ -17,6 +17,8 @@ bindsym $mod+Shift+q kill
 # start rofi (a program launcher)
 bindsym $mod+d exec "rofi -show-icons -modi combi -show combi -combi-modi run,drun -theme solarized_alternate -display-combi '▶'"
 bindsym $mod+p exec "rofi -modi 'clipboard:greenclip print' -show clipboard"
+bindsym $mod+grave exec "<%= ENV['HOME'] %>/.config/i3/i3-cheat-sheet.sh"
+exec --no-startup-id "<%= ENV['HOME'] %>/.config/i3/i3-cheat-sheet.sh"
 
 # change focus
 bindsym $mod+j focus left
