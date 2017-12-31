@@ -3,7 +3,7 @@ DEPENDENCIES
   firewall (~> 1.2.0)
   pacman
     git: https://github.com/ljfranklin/pacman.git
-    revision: 3ad47e1895a534796ab20fcbeaea8c96c3bbb80e
+    revision: 7017b48e495ebd29634f0be9a2cd09440a4db55d
 
 GRAPH
   apt (2.7.0)

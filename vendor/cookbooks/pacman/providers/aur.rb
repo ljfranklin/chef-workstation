@@ -69,25 +69,14 @@ def build_aur target, opts
         action :run
     end
 
-    if opts.pkgbuild_src
-        Chef::Log.debug("Replacing PKGBUILD with custom version")
-        cookbook_file pkgbuild do
-            source "PKGBUILD"
+    if opts.pkgbuild_src[target.name]
+        Chef::Log.debug("Replacing PKGBUILD of #{target.name} with custom version")
+        template pkgbuild do
+            source opts.pkgbuild_src[target.name]
             owner opts.build_user
             group opts.build_group
             mode 0644
             action :create
-        end
-    end
-
-    if opts.patches.length > 0
-        Chef::Log.debug("Adding new patches")
-        opts.patches.each do |patch|
-            cookbook_file ::File.join opts.build_dir, target.name, patch do
-                source patch
-                mode 0644
-                action :create
-            end
         end
     end
 
@@ -107,7 +96,7 @@ def build_aur target, opts
         creates aurfile
         user opts.build_user
         group opts.build_group
-        environment opts.environment
+        environment({ 'GNUPGHOME' => opts.build_dir }.merge(opts.environment))
         action :run
     end
 end
@@ -142,11 +131,22 @@ end
 action :install do
     create_build_dir_if_not_exists(new_resource.build_dir, new_resource.build_user)
 
+    new_resource.gpg_key_ids.each do |key|
+        execute 'import-key' do
+            user new_resource.build_user
+            command "gpg --recv-key #{key}"
+            environment({
+                'GNUPGHOME' => new_resource.build_dir,
+            })
+        end
+    end
+
     package_opts = {
       name: new_resource.name,
       build_dir: new_resource.build_dir,
       build_user: new_resource.build_user,
       install_user: new_resource.install_user,
+      pkgbuild_src: new_resource.pkgbuild_src,
     }
     target = Package.aur package_opts
 
@@ -157,7 +157,7 @@ action :install do
 end
 
 class Package
-    attr_reader :build_dir, :build_user, :install_user, :name, :version, :arch, :dependents
+    attr_reader :build_dir, :build_user, :install_user, :pkgbuild_src, :name, :version, :arch, :dependents
 
     @@version_arch_re = /Version +: ([\w.-]+).+Architecture +: (\w+)/m
     @@default_arch = RUBY_PLATFORM.split("-")[0]
@@ -166,6 +166,7 @@ class Package
 	@build_dir = opts[:build_dir]
 	@build_user = opts[:build_user]
 	@install_user = opts[:install_user]
+	@pkgbuild_src = opts[:pkgbuild_src]
         @name = opts[:name]
 
         info = fetch_latest_info(is_aur)
@@ -182,6 +183,23 @@ class Package
 
     def self.pacman opts
         Package.new opts, false
+    end
+
+    def exists_in_aur
+        uri = URI.parse(pkgbuild_url(name))
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        request = Net::HTTP::Get.new(uri.request_uri)
+        result = http.request(request)
+
+        http_code = result.code.to_i
+        if http_code >= 200 && http_code < 300
+            true
+        elsif http_code == 404
+            false
+        else
+            raise "Unexpected response while checking for existance of #{name} in AUR: #{result.body}"
+        end
     end
 
     def to_s
@@ -217,6 +235,9 @@ class Package
             :user => build_user,
             :group => build_user,
             :cwd => build_dir,
+            :environment => {
+                'GNUPGHOME' => build_dir,
+            },
         ).run_command
         cmd.error! if !allow_error
         cmd.stdout.strip
@@ -227,6 +248,9 @@ class Package
             :user => install_user,
             :group => install_user,
             :cwd => build_dir,
+            :environment => {
+                'GNUPGHOME' => build_dir,
+            },
         ).run_command
         cmd.error! if !allow_error
         cmd.stdout.strip
@@ -240,7 +264,9 @@ class Package
 
     def fetch_latest_info is_aur
         if is_aur
-	    pkgbuild = open(pkgbuild_url(name)).read
+            pkgbuild_download_url = pkgbuild_url(name)
+            Chef::Log.debug("Downloading PKGBUILD from #{pkgbuild_download_url}...")
+            pkgbuild = open(pkgbuild_download_url).read
             command = <<-FIN
                 #{pkgbuild}
                 echo
@@ -310,22 +336,30 @@ class AurDeps
         while not queue.empty?
             package = queue.shift
             dependents = package.dependents.map do |dependent|
-                found = package.shell_install_user("pacman -Si #{dependent}", true).length != 0
-                if !found
+                is_pacman_pkg = package.shell_install_user("pacman -Si #{dependent}", true).length != 0
+                if !is_pacman_pkg
                     out = package.shell_install_user("pacman -Ssq '^#{dependent}$'", true)
                     providers = out.split "\n"
                     if providers.length != 0
                         # TODO: Support muliple providers
                         dependent = providers[0]
-                        found = true
+                        is_pacman_pkg = true
                     end
                 end
+
 		dep_opts = {
                   name: dependent,
 		  build_dir: package.build_dir,
 		  build_user: package.build_user,
+                  install_user: package.install_user,
+                  pkgbuild_src: package.pkgbuild_src,
 		}
-                Package.new dep_opts, !found
+                pkg = Package.new dep_opts, !is_pacman_pkg
+                if !is_pacman_pkg && !pkg.exists_in_aur
+                    raise "Could not find package #{dependent} in either pacman repos or AUR"
+                end
+
+                pkg
             end
             deps[package] = dependents
             queue += dependents

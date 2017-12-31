@@ -1,13 +1,18 @@
-apt_repository "docker" do
-  uri "https://apt.dockerproject.org/repo"
-  components ["main"]
-  distribution "ubuntu-#{node['lsb']['codename']}"
-  keyserver "hkp://ha.pool.sks-keyservers.net:80"
-  key "58118E89F3A912897C070ADBF76221572C52609D"
-  action :add
-end
+case node['platform']
+when 'ubuntu'
+  apt_repository "docker" do
+    uri "https://apt.dockerproject.org/repo"
+    components ["main"]
+    distribution "ubuntu-#{node['lsb']['codename']}"
+    keyserver "hkp://ha.pool.sks-keyservers.net:80"
+    key "58118E89F3A912897C070ADBF76221572C52609D"
+    action :add
+  end
 
-package "docker-engine"
+  package "docker-engine"
+else
+  package 'docker'
+end
 
 group 'docker' do
   action :modify

@@ -1,5 +1,11 @@
 package 'wget'
 package 'curl'
-package 'silversearcher-ag'
 package 'tree'
 package 'xclip'
+
+case node['platform']
+when 'ubuntu'
+  package 'silversearcher-ag'
+else
+  package 'the_silver_searcher'
+end

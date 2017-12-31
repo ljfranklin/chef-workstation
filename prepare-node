@@ -33,7 +33,7 @@ pushd ${MY_DIR}
   berks vendor ./vendor/cookbooks
   sudo -E chef-client \
     --local-mode \
-    -c ./config/solo.rb \
+    -c "$PWD/config/solo.rb" \
     --runlist "role[${ROLE_NAME}]" \
     ${CHEF_OPTS}
 popd

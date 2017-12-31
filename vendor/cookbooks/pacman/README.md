@@ -45,8 +45,8 @@ Use the `pacman_aur` resource to install packages from ArchLinux's AUR repositor
 * build\_user - specify an alternate user to run build commands, defaults to `node['pacman']['build_user']` if set or `nobody`.
 * install\_user - specify an alternate user to run install commands, defaults to `node['pacman']['install_user']` if set or `root`.
 * options - pass arbitrary options to the pacman command.
-* pkgbuild\_src - whether to use an included PKGBUILD file, put the PKGBUILD file in in the `files/default` directory.
-* patches - array of patch names, as files in `files/default` that should be applied for the package.
+* pkgbuild\_src - use a custom PKGBUILD file for the given packages. E.g. `pkgbuild_src({ 'direnv' => 'direnv/PKGBUILD' })` where the custom file is located at `$COOKBOOK/templates/direnv/PKBUILD`
+* gpg\_key\_ids - array of gpg key IDs to download prior to running `makepkg`. These keys should match the `validpgpkeys` array given in the PKGBUILD files.
 * skippgpcheck - optional, pass the `--skippgpcheck` flag to `makepkg`
 
 http://aur.archlinux.org/

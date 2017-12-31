@@ -1,6 +1,10 @@
 {
-  "description": "Used to setup my laptop",
+  "description": "Used to setup my laptop with Arch",
   "run_list": [
+    "recipe[pacman-conf]",
+    "recipe[xorg]",
+    "recipe[i3]",
+    "recipe[yaourt]",
     "role[base]"
   ]
 }

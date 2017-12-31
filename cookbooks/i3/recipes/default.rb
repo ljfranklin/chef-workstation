@@ -3,9 +3,9 @@ when 'arch'
   package 'rofi'
   pacman_aur 'greenclip'
   package 'feh'
-  pacman_group 'i3' do
-    action :install
-  end
+  pacman_group 'i3'
+  pacman_aur 'betterlockscreen-git'
+  pacman_aur 'xss-lock-git'
 else
   raise "i3 recipe only supports platform 'arch', not '#{node['platform']}'"
 end
@@ -65,6 +65,11 @@ remote_file "#{ENV['HOME']}/Pictures/background.jpg" do
   group ENV['SUDO_USER']
   mode '0755'
   action :create_if_missing
+end
+
+execute "betterlockscreen -u #{ENV['HOME']}/Pictures/background.jpg" do
+  user ENV['SUDO_USER']
+  group ENV['SUDO_USER']
 end
 
 template '/etc/X11/xinit/xinitrc.d/60-background.sh' do

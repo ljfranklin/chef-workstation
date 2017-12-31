@@ -1,0 +1,3 @@
+name 'spotify'
+
+depends 'pacman'

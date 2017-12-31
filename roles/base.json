@@ -1,25 +1,25 @@
 {
   "description": "Base role used to setup all my personal workstations",
   "chef_type": "role",
+  "json_class": "Chef::Role",
   "run_list": [
-    "recipe[apt]",
-    "recipe[diodon]",
+    "recipe[ufw]",
     "recipe[direnv]",
     "recipe[terminal-utilities]",
     "recipe[git]",
     "recipe[nodejs]",
-    "recipe[chrome]",
     "recipe[firefox]",
     "recipe[go]",
+    "recipe[gimp]",
     "recipe[spotify]",
-    "recipe[ssh-server]",
     "recipe[docker]",
+    "recipe[ruby]",
     "recipe[steam]",
-    "recipe[skype]",
-    "recipe[vagrant]",
     "recipe[shell-tweaks]",
     "recipe[bash-it]",
-    "recipe[yubikey]",
+    "recipe[terminator]",
+    "recipe[xbindkeys]",
+    "recipe[xmodmap]",
     "recipe[vim]"
   ],
   "default_attributes": {
@@ -35,7 +35,9 @@
         "clipboard"
       ],
       "plugins": [
-        "base"
+        "base",
+        "sshagent",
+        "ruby"
       ],
       "completion": [
         "git"
@@ -44,12 +46,14 @@
         "plugins": [
           "direnv",
           "history-arrow-keys",
-          "go"
+          "go",
+          "chruby-auto",
+          "vim"
         ]
       }
     },
     "go": {
-      "version": "1.7.4",
+      "version": "1.9.2",
       "gopath": "/home/lyle/go"
     },
     "firewall": {

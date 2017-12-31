@@ -18,11 +18,13 @@
     - https://github.com/cdown/clipmenu
 [x] background (xsetroot?)
 [x] show i3 cheat sheet on login
-[ ] lock screen with password
+[x] lock screen with password
+[x] git aliases
 [ ] login screen
+    - lightdm + lightdm-webkit-theme-aether
 [ ] automatically mount and decrypt usb key
-[ ] git duet
 [ ] printer
+[ ] switch to hdmi (video+audio) output when plugged in
 [ ] encrypt entire drive
 [ ] create bootstrapping script
 
@@ -30,3 +32,5 @@
 
 [ ] write blog post
 [ ] PR pacman_aur to built-in chef pacman_package
+    - Doesn't work for packages where git url does not match name
+      - e.g. https://aur.archlinux.org/packages/libindicator-gtk3-ubuntu/

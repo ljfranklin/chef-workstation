@@ -3,7 +3,7 @@ when 'ubuntu'
   package 'deps' do
     package_name %w(python-dev python-pip python3-dev python3-pip)
   end
-  
+
   apt_repository 'neovim-ppa' do
     uri 'http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu'
     distribution node['lsb']['codename']
