@@ -1,4 +1,6 @@
 package 'ttf-dejavu'
+package 'ttf-font-awesome'
+pacman_aur 'ttf-material-design-icons'
 
 # powerline
 git File.join(Chef::Config[:file_cache_path], 'powerline') do

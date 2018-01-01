@@ -4,8 +4,19 @@ when 'arch'
   pacman_aur 'greenclip'
   package 'feh'
   pacman_group 'i3'
+  package 'acpi'
+  package 'sysstat'
+  pacman_aur 'polybar'
   pacman_aur 'betterlockscreen-git'
   pacman_aur 'xss-lock-git'
+
+  package 'udiskie'
+
+  package 'npm'
+  execute 'install-udiskie-dmenu' do
+    command 'npm install -g udiskie-dmenu'
+    user 'root'
+  end
 else
   raise "i3 recipe only supports platform 'arch', not '#{node['platform']}'"
 end
@@ -27,20 +38,6 @@ end
 
 template "#{ENV['HOME']}/.config/i3/config" do
   source 'i3config.erb'
-  mode '0755'
-  owner ENV['SUDO_USER']
-  group ENV['SUDO_USER']
-end
-
-directory "#{ENV['HOME']}/.config/i3status" do
-  mode '0755'
-  owner ENV['SUDO_USER']
-  group ENV['SUDO_USER']
-  recursive true
-end
-
-template "#{ENV['HOME']}/.config/i3status/config" do
-  source 'i3statusconfig.erb'
   mode '0755'
   owner ENV['SUDO_USER']
   group ENV['SUDO_USER']
@@ -85,6 +82,14 @@ end
 template "#{ENV['HOME']}/.config/i3/i3-cheat-sheet.sh" do
   source 'i3-cheat-sheet.sh.erb'
   mode '0755'
+  owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
+end
+
+package 'dunst'
+template "#{ENV['HOME']}/.config/dunst/dunstrc" do
+  source 'dunstrc'
+  mode '0644'
   owner ENV['SUDO_USER']
   group ENV['SUDO_USER']
 end

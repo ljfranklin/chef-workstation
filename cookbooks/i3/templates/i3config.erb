@@ -17,8 +17,19 @@ bindsym $mod+Shift+q kill
 # start rofi (a program launcher)
 bindsym $mod+d exec "rofi -show-icons -modi combi -show combi -combi-modi run,drun -theme solarized_alternate -display-combi '▶'"
 bindsym $mod+p exec "rofi -modi 'clipboard:greenclip print' -show clipboard -theme solarized_alternate"
+bindsym $mod+m exec "UDISKIE_DMENU_LAUNCHER=rofi udiskie-dmenu -theme solarized_alternate -matching regex -dmenu -i -no-custom -multi-select"
+exec --no-startup-id "udiskie &> /tmp/udiskie.log"
 bindsym $mod+slash exec "<%= ENV['HOME'] %>/.config/i3/i3-cheat-sheet.sh"
-exec --no-startup-id "<%= ENV['HOME'] %>/.config/i3/i3-cheat-sheet.sh"
+
+# polybar
+exec --no-startup-id polybar top
+exec --no-startup-id polybar bottom
+
+bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%"
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10 ; [ $(awk 'BEGIN{ print $(xbacklight -get)<1 }') -eq 1 ] && xbacklight -set 1"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10"
 
 # lock screen
 bindsym $mod+grave exec "betterlockscreen -l"
@@ -131,22 +142,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# generated using i3-style, archlinux theme:
-# https://github.com/acrisci/i3-style/blob/master/themes/archlinux
-bar {
-  status_command i3status
-  colors {
-    separator #666666
-    background #222222
-    statusline #dddddd
-    focused_workspace #0088CC #0088CC #ffffff
-    active_workspace #333333 #333333 #ffffff
-    inactive_workspace #333333 #333333 #888888
-    urgent_workspace #2f343a #900000 #ffffff
-  }
-}
-
 client.focused #0088CC #0088CC #ffffff #dddddd
 client.focused_inactive #333333 #333333 #888888 #292d2e
 client.unfocused #333333 #333333 #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
+
+for_window [class="^.*"] border pixel 1
+new_window 1pixel

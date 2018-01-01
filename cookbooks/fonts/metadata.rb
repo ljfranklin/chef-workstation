@@ -1,0 +1,3 @@
+name 'fonts'
+
+depends 'pacman'
