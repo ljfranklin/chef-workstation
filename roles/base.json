@@ -3,6 +3,7 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "run_list": [
+    "recipe[grub]",
     "recipe[ufw]",
     "recipe[direnv]",
     "recipe[terminal-utilities]",
