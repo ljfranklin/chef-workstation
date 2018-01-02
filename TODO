@@ -22,7 +22,7 @@
 [x] git aliases
 [x] automatically mount and decrypt usb key
 [x] printer
-[ ] switch to hdmi (video+audio) output when plugged in
+[x] switch to hdmi (video+audio) output when plugged in
 [ ] login screen
     - lightdm + lightdm-webkit-theme-aether
 [ ] encrypt entire drive

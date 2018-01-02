@@ -4,6 +4,7 @@
   "json_class": "Chef::Role",
   "run_list": [
     "recipe[grub]",
+    "recipe[audio]",
     "recipe[ufw]",
     "recipe[direnv]",
     "recipe[terminal-utilities]",
