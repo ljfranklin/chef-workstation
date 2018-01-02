@@ -20,11 +20,11 @@
 [x] show i3 cheat sheet on login
 [x] lock screen with password
 [x] git aliases
+[x] automatically mount and decrypt usb key
+[x] printer
+[ ] switch to hdmi (video+audio) output when plugged in
 [ ] login screen
     - lightdm + lightdm-webkit-theme-aether
-[ ] automatically mount and decrypt usb key
-[ ] printer
-[ ] switch to hdmi (video+audio) output when plugged in
 [ ] encrypt entire drive
 [ ] create bootstrapping script
 

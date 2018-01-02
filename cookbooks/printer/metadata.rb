@@ -1,0 +1,3 @@
+name 'printer'
+
+depends 'pacman'

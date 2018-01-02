@@ -19,6 +19,7 @@
     "recipe[shell-tweaks]",
     "recipe[bash-it]",
     "recipe[terminator]",
+    "recipe[printer]",
     "recipe[xmodmap]",
     "recipe[vim]"
   ],
