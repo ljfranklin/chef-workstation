@@ -24,7 +24,7 @@ font-4 = "Font Awesome 5 Brands:size=12;2"
 font-5 = "DejaVu Sans Mono:size=12;2"
 
 modules-left = i3
-modules-right = volume backlight wireless-network battery clock powermenu
+modules-right = volume backlight wireless-network openvpn battery clock powermenu
 
 [bar/bottom]
 bottom = true
@@ -266,5 +266,11 @@ exec = echo ""
 click-left = /home/lyle/.config/i3/i3-cheat-sheet.sh &
 
 format-padding = 3
+
+[module/openvpn]
+type = custom/script
+exec = pgrep openvpn >/dev/null && echo "%{F#0088CC}%{F-}  VPN" || echo "  VPN"
+interval = 5
+format-font = 3
 
 ; vim:ft=dosini

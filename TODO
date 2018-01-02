@@ -23,6 +23,9 @@
 [x] automatically mount and decrypt usb key
 [x] printer
 [x] switch to hdmi (video+audio) output when plugged in
+[x] vpn
+[ ] better notifications theme
+[ ] network manager instead of netctl?
 [ ] login screen
     - lightdm + lightdm-webkit-theme-aether
 [ ] encrypt entire drive

@@ -2,6 +2,8 @@ package 'wget'
 package 'curl'
 package 'tree'
 package 'xclip'
+package 'dnsutils'
+package 'gnu-netcat'
 
 case node['platform']
 when 'ubuntu'
