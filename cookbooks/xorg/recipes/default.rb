@@ -8,6 +8,8 @@ when 'arch'
     action :install
     only_if 'lspci | grep -e VGA -e 3D | grep -i intel'
   end
+
+  pacman_aur 'mons'
 else
   raise "xorg recipe only supports platform 'arch', not '#{node['platform']}'"
 end
