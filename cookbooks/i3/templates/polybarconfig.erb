@@ -4,8 +4,8 @@ height = 34
 
 cursor-click = pointer
 
-background = #00000000
-foreground = #ccffffff
+background = #000000
+foreground = #ccffff
 
 line-color = ${bar/bottom.background}
 line-size = 4
@@ -24,7 +24,10 @@ font-4 = "Font Awesome 5 Brands:size=12;2"
 font-5 = "DejaVu Sans Mono:size=12;2"
 
 modules-left = i3
-modules-right = volume backlight wireless-network openvpn battery clock powermenu
+modules-right = volume backlight battery clock powermenu
+
+tray-position = right
+tray-background = ${bar/top.background}
 
 [bar/bottom]
 bottom = true
@@ -188,29 +191,6 @@ bar-used-empty = ─
 bar-used-empty-font = 6
 bar-used-empty-foreground = #444444
 
-[module/wireless-network]
-type = internal/network
-interface = wlp58s0
-interval = 3.0
-ping-interval = 10
-
-format-connected = <ramp-signal> <label-connected>
-label-connected = %essid%
-label-disconnected =    not connected
-label-disconnected-foreground = #66
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-
-animation-packetloss-0 = 
-animation-packetloss-0-foreground = #ffa64c
-animation-packetloss-1 = 
-animation-packetloss-1-foreground = ${bar/top.foreground}
-animation-packetloss-framerate = 500
-
 [module/volume]
 type = internal/volume
 speaker-mixer = Speaker
@@ -266,11 +246,5 @@ exec = echo ""
 click-left = /home/lyle/.config/i3/i3-cheat-sheet.sh &
 
 format-padding = 3
-
-[module/openvpn]
-type = custom/script
-exec = pgrep openvpn >/dev/null && echo "%{F#0088CC}%{F-}  VPN" || echo "  VPN"
-interval = 5
-format-font = 3
 
 ; vim:ft=dosini
