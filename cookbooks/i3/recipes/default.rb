@@ -93,3 +93,12 @@ template "#{ENV['HOME']}/.config/dunst/dunstrc" do
   owner ENV['SUDO_USER']
   group ENV['SUDO_USER']
 end
+
+# fixes screen tearing
+package 'compton'
+template "#{ENV['HOME']}/.config/compton.conf" do
+  source 'compton.conf'
+  mode '0644'
+  owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
+end

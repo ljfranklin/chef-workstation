@@ -26,6 +26,9 @@ exec --no-startup-id polybar top
 exec --no-startup-id polybar bottom
 exec --no-startup-id nm-applet
 
+# fix screen tearing
+exec --no-startup-id compton -b --backend glx --vsync opengl
+
 bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%"
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"
@@ -152,4 +155,4 @@ for_window [class="^.*"] border pixel 2
 new_window 1pixel
 
 gaps inner 10
-gaps outer 10
+gaps outer 5

@@ -26,6 +26,7 @@
 [x] vpn
 [x] better notifications theme
 [x] network manager instead of netctl?
+[x] compton
 [ ] login screen
     - lightdm + lightdm-webkit-theme-aether
 [ ] encrypt entire drive
