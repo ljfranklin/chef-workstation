@@ -144,7 +144,7 @@ label-urgent-padding = 4
 type = internal/cpu
 interval = 0.5
 format = <label> <ramp-coreload>
-label = CPU
+label = ""
 format-margin = 6
 
 ramp-coreload-0 = ▁
@@ -174,22 +174,22 @@ ramp-coreload-7-foreground = #ff5555
 
 [module/memory]
 type = internal/memory
-format = <label> <bar-used>
-label = RAM
+format = <bar-used>
+interval = 2
+format-prefix = "  "
+format-prefix-foreground = ${bar/top.foreground}
 
-bar-used-width = 10
-bar-used-foreground-0 = #aaff77
-bar-used-foreground-1 = #aaff77
-bar-used-foreground-2 = #fba922
+bar-used-width = 14
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
 bar-used-foreground-3 = #ff5555
-bar-used-indicator = |
-bar-used-indicator-font = 6
-bar-used-indicator-foreground = #ff
-bar-used-fill = ─
-bar-used-fill-font = 6
-bar-used-empty = ─
-bar-used-empty-font = 6
-bar-used-empty-foreground = #444444
+bar-used-indicator =
+;bar-used-indicator-font = 6
+;bar-used-indicator-foreground = #ff
+bar-used-fill = %{O-1}█
+bar-used-empty = %{O-1}▁
+bar-used-empty-foreground = #666
 
 [module/volume]
 type = internal/volume
