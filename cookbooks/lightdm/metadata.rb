@@ -1,1 +1,3 @@
 name 'lightdm'
+
+depends 'pacman'

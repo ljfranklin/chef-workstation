@@ -27,6 +27,7 @@
     "recipe[vpn]"
   ],
   "default_attributes": {
+    "background": "https://github.com/unix121/i3wm-themer/raw/master/themes/Forest/Forest2.png",
     "git": {
       "name": "Lyle Franklin",
       "email": "lylejfranklin@gmail.com"

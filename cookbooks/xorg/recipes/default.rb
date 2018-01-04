@@ -8,6 +8,7 @@ when 'arch'
     action :install
     only_if 'lspci | grep -e VGA -e 3D | grep -i intel'
   end
+  package 'xorg-server-xephyr'
 
   pacman_aur 'mons'
 else

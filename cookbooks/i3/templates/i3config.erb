@@ -36,8 +36,7 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 10 ; [ $(awk 'BEGIN{ print $
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 10"
 
 # lock screen
-bindsym $mod+grave exec "betterlockscreen -l"
-exec --no-startup-id "xss-lock --transfer-sleep-lock betterlockscreen -- -l"
+bindsym $mod+grave exec "light-locker-command -l"
 
 # change focus
 bindsym $mod+j focus left

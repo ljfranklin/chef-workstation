@@ -1,9 +1,12 @@
 {
   "description": "Used to setup my laptop with Arch",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
   "run_list": [
     "recipe[pacman-conf]",
     "recipe[xorg]",
     "recipe[i3]",
+    "recipe[lightdm]",
     "recipe[yaourt]",
     "role[base]"
   ]
