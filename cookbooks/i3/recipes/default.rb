@@ -7,7 +7,6 @@ when 'arch'
   package 'acpi'
   package 'sysstat'
   pacman_aur 'polybar'
-  pacman_aur 'xss-lock-git'
 
   package 'udiskie'
 

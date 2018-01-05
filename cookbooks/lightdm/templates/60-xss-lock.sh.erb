@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if ! pgrep -x "xss-lock" > /dev/null; then
+  xss-lock --transfer-sleep-lock /etc/lightdm/lock-screen.sh &
+fi

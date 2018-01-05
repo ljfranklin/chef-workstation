@@ -1,6 +1,0 @@
-#!/bin/sh
-
-if ! pgrep -x "light-locker" > /dev/null; then
-  light-locker &
-  xss-lock light-locker-command -- -l &
-fi

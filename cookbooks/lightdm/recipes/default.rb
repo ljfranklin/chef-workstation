@@ -1,6 +1,6 @@
 package 'lightdm'
 pacman_aur 'lightdm-slick-greeter'
-package 'light-locker'
+pacman_aur 'xss-lock-git'
 
 service 'lightdm' do
   action :enable
@@ -31,8 +31,15 @@ remote_file '/etc/lightdm/background' do
   action :create
 end
 
-template '/etc/X11/xinit/xinitrc.d/60-light-locker.sh' do
-  source '60-light-locker.sh.erb'
+template '/etc/lightdm/lock-screen.sh' do
+  source 'lock-screen.sh'
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+template '/etc/X11/xinit/xinitrc.d/60-xss-lock.sh' do
+  source '60-xss-lock.sh.erb'
   owner 'root'
   group 'root'
   mode '0755'

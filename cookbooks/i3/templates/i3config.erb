@@ -36,7 +36,7 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 10 ; [ $(awk 'BEGIN{ print $
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 10"
 
 # lock screen
-bindsym $mod+grave exec "light-locker-command -l"
+bindsym $mod+grave exec "/etc/lightdm/lock-screen.sh"
 
 # change focus
 bindsym $mod+j focus left

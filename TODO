@@ -30,7 +30,8 @@
 [x] login screen
 [x] volume icon broken in polybar
 [ ] use xss-lock delay script to avoid flashes on lock
-[ ] fix `ssh-agent` dead warning
+[ ] get ssh firewall recipe passing reliably
+    - seems to require a restart for iptables to work after upgrading packages
 [ ] encrypt entire drive
 [ ] create bootstrapping script
 
