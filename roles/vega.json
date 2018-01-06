@@ -7,7 +7,6 @@
     "recipe[xorg]",
     "recipe[i3]",
     "recipe[lightdm]",
-    "recipe[yaourt]",
     "role[base]"
   ]
 }

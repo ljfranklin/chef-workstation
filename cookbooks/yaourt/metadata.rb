@@ -1,3 +1,0 @@
-name 'yaourt'
-
-depends 'pacman'

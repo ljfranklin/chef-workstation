@@ -12,4 +12,7 @@ when 'ubuntu'
 else
   package 'the_silver_searcher'
   package 'bind-tools'
+  pacman_aur 'cower' do
+    gpg_key_ids ['1EB2638FF56C0C53']
+  end
 end
