@@ -1,3 +1,7 @@
+# Known issue:
+# If the kernel is updated this recipe might fail with:
+# `can't initialize iptables table `filter': Table does not exist (do you need to insmod?)`.
+# To fix you need to reboot and re-run this recipe.
 package 'ufw'
 
 ufw_rules = [
@@ -13,9 +17,11 @@ ufw_rules.each do |rule|
   end
 end
 
-service 'ufw' do
-  action :enable
+execute 'enable-ufw' do
+  command 'ufw enable'
+  user 'root'
 end
+
 service 'ufw' do
-  action :start
+  action [:enable, :start]
 end

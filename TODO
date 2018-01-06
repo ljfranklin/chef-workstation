@@ -29,9 +29,7 @@
 [x] compton
 [x] login screen
 [x] volume icon broken in polybar
-[ ] use xss-lock delay script to avoid flashes on lock
-[ ] get ssh firewall recipe passing reliably
-    - seems to require a restart for iptables to work after upgrading packages
+[x] use xss-lock delay script to avoid flashes on lock
 [ ] encrypt entire drive
 [ ] create bootstrapping script
 
