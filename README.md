@@ -42,6 +42,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub
 #### Known issues
 
 **ifconfig error:**
+
 If the kernel is updated the ufw recipe might fail with:
 
 ```
@@ -50,6 +51,7 @@ can't initialize iptables table `filter': Table does not exist (do you need to i
 To fix you need to reboot and re-run this recipe.
 
 **display manager is totally busted:**
+
 If something goes wrong and the display manager isn't working, follow these steps to get a root terminal:
 1. reboot
 1. On the GRUB menu, hit 'e'

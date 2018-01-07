@@ -1,1 +1,2 @@
+package 'pulseaudio'
 package 'pavucontrol'
