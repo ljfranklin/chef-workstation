@@ -30,7 +30,7 @@
 [x] login screen
 [x] volume icon broken in polybar
 [x] use xss-lock delay script to avoid flashes on lock
-[ ] encrypt entire drive
+[x] encrypt entire drive
 [ ] create bootstrapping script
 
 ## Future
@@ -39,3 +39,4 @@
 [ ] PR pacman_aur to built-in chef pacman_package
     - Doesn't work for packages where git url does not match name
       - e.g. https://aur.archlinux.org/packages/libindicator-gtk3-ubuntu/
+    - Doesn't install optional deps
