@@ -3,10 +3,9 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "run_list": [
+    "recipe[terminator]",
     "recipe[grub]",
-    "recipe[networkmanager]",
     "recipe[audio]",
-    "recipe[ufw]",
     "recipe[direnv]",
     "recipe[terminal-utilities]",
     "recipe[git]",
@@ -20,11 +19,12 @@
     "recipe[steam]",
     "recipe[shell-tweaks]",
     "recipe[bash-it]",
-    "recipe[terminator]",
     "recipe[printer]",
     "recipe[xmodmap]",
     "recipe[vim]",
-    "recipe[vpn]"
+    "recipe[vpn]",
+    "recipe[ufw]",
+    "recipe[networkmanager]"
   ],
   "default_attributes": {
     "background": "https://github.com/unix121/i3wm-themer/raw/master/themes/Forest/Forest2.png",

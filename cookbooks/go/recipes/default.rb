@@ -27,16 +27,19 @@ directory node['go']['gopath'] do
   action :create
   recursive true
   owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
 end
 
 directory node['go']['gobin'] do
   action :create
   recursive true
   owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
 end
 
 template "#{node['go']['gopath']}/.envrc" do
   source "envrc.erb"
   owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
   mode "0755"
 end

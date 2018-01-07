@@ -4,6 +4,8 @@ package 'tree'
 package 'xclip'
 package 'gnu-netcat'
 package 'strace'
+package 'openssh'
+package 'jq'
 
 case node['platform']
 when 'ubuntu'

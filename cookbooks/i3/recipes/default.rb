@@ -1,11 +1,21 @@
+directory "#{ENV['HOME']}/.config" do
+  mode '0755'
+  owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
+end
+
 case node['platform']
 when 'arch'
   package 'rofi'
   pacman_aur 'greenclip'
   package 'feh'
   package 'i3-gaps'
+  package 'i3status'
   package 'acpi'
   package 'sysstat'
+  package 'alsa-lib'
+  package 'jsoncpp'
+  pacman_aur 'i3ipc-glib-git'
   pacman_aur 'polybar'
 
   package 'udiskie'
@@ -36,6 +46,20 @@ end
 
 template "#{ENV['HOME']}/.config/i3/config" do
   source 'i3config.erb'
+  mode '0755'
+  owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
+end
+
+directory "#{ENV['HOME']}/.config/polybar" do
+  mode '0755'
+  owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
+  recursive true
+end
+
+template "#{ENV['HOME']}/.config/polybar/config" do
+  source 'polybarconfig.erb'
   mode '0755'
   owner ENV['SUDO_USER']
   group ENV['SUDO_USER']
@@ -80,6 +104,11 @@ template "#{ENV['HOME']}/.config/i3/i3-cheat-sheet.sh" do
 end
 
 package 'dunst'
+directory "#{ENV['HOME']}/.config/dunst" do
+  owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
+  mode '0755'
+end
 template "#{ENV['HOME']}/.config/dunst/dunstrc" do
   source 'dunstrc'
   mode '0644'

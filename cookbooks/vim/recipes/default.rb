@@ -23,6 +23,8 @@ else
   raise "vim recipe only supports platforms 'ubuntu' and 'arch', not '#{node['platform']}'"
 end
 
+execute "chown -R #{ENV['SUDO_USER']}:#{ENV['SUDO_USER']} #{ENV['HOME']}/.cache"
+
 package 'neovim'
 execute 'gem install rcodetools'
 execute 'pip install --upgrade neovim'
@@ -35,6 +37,8 @@ end
 # remove .vim dir if it exists and is not a git repo
 directory "#{ENV['HOME']}/.vim" do
   action :delete
+  owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
   recursive true
   not_if { File.directory?("#{ENV['HOME']}/.vim/.git") }
 end
@@ -54,24 +58,29 @@ end
 execute 'vim-install' do
   command './bin/install -n'
   cwd "#{ENV['HOME']}/.vim"
+  # TODO: don't run this as root
   user 'root'
   environment 'PATH' => "/usr/local/go/bin:#{ENV['PATH']}"
 end
 
 execute "chown -R #{ENV['SUDO_USER']}:#{ENV['SUDO_USER']} #{ENV['HOME']}/.vim"
+execute "chown -R #{ENV['SUDO_USER']}:#{ENV['SUDO_USER']} #{ENV['HOME']}/.local"
 
 template "#{ENV['HOME']}/.vimrc.local" do
   source "vimrc.local"
   owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
   mode "0755"
 end
 template "#{ENV['HOME']}/.vimrc.local.before" do
   source "vimrc.local.before"
   owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
   mode "0755"
 end
 template "#{ENV['HOME']}/.vimrc.local.plugins" do
   source "vimrc.local.plugins"
   owner ENV['SUDO_USER']
+  group ENV['SUDO_USER']
   mode "0755"
 end

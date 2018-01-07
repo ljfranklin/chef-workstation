@@ -134,6 +134,7 @@ action :install do
     new_resource.gpg_key_ids.each do |key|
         execute 'import-key' do
             user new_resource.build_user
+	    group new_resource.build_user
             command "gpg --recv-key #{key}"
             environment({
                 'GNUPGHOME' => new_resource.build_dir,

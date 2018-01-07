@@ -23,18 +23,18 @@ include Chef::Mixin::ShellOut
 
 action :install do
   unless @pmgroup.exists
-    run_command_with_systems_locale(
-      :command => "pacman --sync --noconfirm --noprogressbar#{expand_options(@new_resource.options)} #{@new_resource.name}"
-    )
+    shell_out(
+      "pacman --sync --noconfirm --noprogressbar#{expand_options(@new_resource.options)} #{@new_resource.name}"
+    ).run_command.error!
     new_resource.updated_by_last_action(true)
   end
 end
 
 action :remove do
   if @pmgroup.exists
-    run_command_with_systems_locale(
-      :command => "pacman --remove --noconfirm --noprogressbar#{expand_options(@new_resource.options)} #{@new_resource.name}"
-    )
+    shell_out(
+      "pacman --remove --noconfirm --noprogressbar#{expand_options(@new_resource.options)} #{@new_resource.name}"
+    ).run_command.error!
     new_resource.updated_by_last_action(true)
   end
 end
