@@ -6,6 +6,8 @@ package 'gnu-netcat'
 package 'strace'
 package 'openssh'
 package 'jq'
+package 'zip'
+package 'unzip'
 
 case node['platform']
 when 'ubuntu'
