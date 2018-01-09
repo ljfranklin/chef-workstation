@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if ! pgrep -x "light-locker" > /dev/null; then
+  light-locker --no-lock-on-suspend &
+fi

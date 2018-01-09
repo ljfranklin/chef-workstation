@@ -1,6 +1,10 @@
 package 'lightdm'
 pacman_aur 'lightdm-slick-greeter'
+
+# light-locker briefly displays screen after opening lid before locking
+# use xss-lock + delay + light-locker-command to avoid this
 pacman_aur 'xss-lock-git'
+package 'light-locker'
 
 service 'lightdm' do
   action :enable
@@ -33,6 +37,13 @@ end
 
 template '/etc/lightdm/lock-screen.sh' do
   source 'lock-screen.sh'
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+template '/etc/X11/xinit/xinitrc.d/60-light-locker.sh' do
+  source '60-light-locker.sh.erb'
   owner 'root'
   group 'root'
   mode '0755'

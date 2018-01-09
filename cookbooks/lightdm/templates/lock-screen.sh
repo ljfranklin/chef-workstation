@@ -2,7 +2,7 @@
 
 # adapted from /usr/share/doc/xss-lock/transfer-sleep-lock-generic-delay.sh
 
-locker="dm-tool lock"
+locker="light-locker-command -l"
 
 # Delay in seconds. Note that by default systemd-logind allows a maximum sleep
 # delay of 5 seconds.
