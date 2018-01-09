@@ -1,5 +1,6 @@
 package 'ttf-dejavu'
 package 'ttf-font-awesome'
+package 'noto-fonts'
 pacman_aur 'ttf-material-design-icons'
 
 # powerline
