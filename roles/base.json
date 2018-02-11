@@ -3,7 +3,7 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "run_list": [
-    "recipe[terminator]",
+    "recipe[alacritty]",
     "recipe[grub]",
     "recipe[audio]",
     "recipe[direnv]",

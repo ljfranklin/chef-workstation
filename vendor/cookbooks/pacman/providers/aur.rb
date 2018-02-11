@@ -21,6 +21,7 @@ require 'chef/mixin/shell_out'
 require 'chef/mixin/language'
 require 'tsort'
 require 'open-uri'
+require 'tempfile'
 include Chef::Mixin::ShellOut
 
 def create_build_dir_if_not_exists(build_dir, build_user)
@@ -232,29 +233,39 @@ class Package
     end
 
     def shell_build_user(command, allow_error=false)
-        cmd = Mixlib::ShellOut.new(command,
-            :user => build_user,
-            :group => build_user,
-            :cwd => build_dir,
-            :environment => {
-                'GNUPGHOME' => build_dir,
-            },
-        ).run_command
-        cmd.error! if !allow_error
-        cmd.stdout.strip
+        Tempfile.open('chef-pacman') do |script|
+            script.chmod(0755)
+            script.write(command)
+            script.close
+            cmd = Mixlib::ShellOut.new("/bin/bash -c #{script.path}",
+                :user => build_user,
+                :group => build_user,
+                :cwd => build_dir,
+                :environment => {
+                    'GNUPGHOME' => build_dir,
+                },
+            ).run_command
+            cmd.error! if !allow_error
+            cmd.stdout.strip
+        end
     end
 
     def shell_install_user(command, allow_error=false)
-        cmd = Mixlib::ShellOut.new(command,
-            :user => install_user,
-            :group => install_user,
-            :cwd => build_dir,
-            :environment => {
-                'GNUPGHOME' => build_dir,
-            },
-        ).run_command
-        cmd.error! if !allow_error
-        cmd.stdout.strip
+        Tempfile.open('chef-pacman') do |script|
+            script.chmod(0755)
+            script.write(command)
+            script.close
+            cmd = Mixlib::ShellOut.new("/bin/bash -c '#{command}'",
+                :user => install_user,
+                :group => install_user,
+                :cwd => build_dir,
+                :environment => {
+                    'GNUPGHOME' => build_dir,
+                },
+            ).run_command
+            cmd.error! if !allow_error
+            cmd.stdout.strip
+        end
     end
 
     private
