@@ -3,6 +3,7 @@
 .chef/encrypted_data_bag_secret
 nodes/
 /config/local-mode-cache/
+/config/chef_guid
 
 # Ruby
 .rake_test_cache

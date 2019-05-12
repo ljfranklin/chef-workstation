@@ -27,7 +27,7 @@
     "recipe[networkmanager]"
   ],
   "default_attributes": {
-    "background": "https://github.com/unix121/i3wm-themer/raw/master/themes/Forest/Forest2.png",
+    "background": "https://github.com/unix121/i3wm-themer/raw/c2d6d44438b5d23393afd13ddd80cd933cc00099/src/wallpapers/005.png",
     "git": {
       "name": "Lyle Franklin",
       "email": "lylejfranklin@gmail.com"
@@ -50,6 +50,7 @@
       "custom": {
         "plugins": [
           "direnv",
+          "gpg-ssh",
           "history-arrow-keys",
           "go",
           "chruby-auto",

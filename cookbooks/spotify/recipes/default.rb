@@ -5,7 +5,7 @@ when 'ubuntu'
     distribution nil
     components ["stable", "non-free"]
     keyserver 'hkp://keyserver.ubuntu.com:80'
-    key 'D2C19886'
+    key 'A87FF9DF48BF1C90'
     action :add
   end
 
@@ -22,6 +22,8 @@ when 'ubuntu'
 
   package 'spotify-client'
 when 'arch'
-  pacman_aur 'spotify'
+  pacman_aur 'spotify' do
+    gpg_key_ids ['A87FF9DF48BF1C90']
+  end
 end
 

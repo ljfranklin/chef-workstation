@@ -18,7 +18,6 @@
 #
 
 require 'chef/mixin/shell_out'
-require 'chef/mixin/language'
 include Chef::Mixin::ShellOut
 
 action :install do
